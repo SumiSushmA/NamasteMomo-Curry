@@ -1,0 +1,528 @@
+/* Offers page — ticket-style deal grid */
+
+#cust-root[data-page="promos"] main {
+  overflow-x: clip;
+  padding: 0;
+  background: #f3ede4;
+}
+
+.offers-page {
+  --offers-bg: #f3ede4;
+  --offers-ink: #1c1410;
+  --offers-muted: #6f6156;
+  --offers-line: rgba(28, 20, 16, 0.12);
+  --offers-wine: #7a2836;
+  --offers-serif: 'Instrument Serif', Georgia, serif;
+  --offers-sans: 'DM Sans', system-ui, sans-serif;
+  --offers-max: 1140px;
+  --offers-gutter: clamp(20px, 4vw, 40px);
+
+  font-family: var(--offers-sans);
+  color: var(--offers-ink);
+  background: var(--offers-bg);
+}
+
+/* Hero */
+.offers-hero {
+  background: var(--offers-ink);
+  color: #fff;
+  padding: clamp(48px, 8vw, 80px) var(--offers-gutter);
+  padding-top: clamp(88px, 10vw, 108px);
+}
+
+.offers-hero__inner {
+  max-width: var(--offers-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.offers-hero__eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.offers-hero__copy h1 {
+  margin: 0;
+  font-family: var(--offers-serif);
+  font-size: clamp(36px, 5.5vw, 58px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.offers-hero__copy p {
+  margin: 16px 0 0;
+  max-width: 480px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.offers-hero__badge {
+  text-align: center;
+  padding: 20px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.offers-hero__badge strong {
+  display: block;
+  font-family: var(--offers-serif);
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+}
+
+.offers-hero__badge span {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Body */
+.offers-body {
+  max-width: var(--offers-max);
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 64px) var(--offers-gutter) clamp(64px, 8vw, 96px);
+}
+
+.offers-alert {
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(156, 59, 37, 0.35);
+  background: rgba(156, 59, 37, 0.08);
+  color: #9c3b25;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.offers-empty {
+  text-align: center;
+  padding: clamp(48px, 8vw, 72px) 24px;
+  background: #fff;
+  border: 1px dashed var(--offers-line);
+  border-radius: 16px;
+}
+
+.offers-empty h2 {
+  margin: 20px 0 8px;
+  font-family: var(--offers-serif);
+  font-size: clamp(26px, 3.5vw, 34px);
+  font-weight: 400;
+}
+
+.offers-empty p {
+  margin: 0 0 24px;
+  color: var(--offers-muted);
+  font-size: 15px;
+}
+
+/* Grid */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Deal ticket card */
+.offer-deal {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--offers-line);
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(28, 20, 16, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.offer-deal:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(28, 20, 16, 0.1);
+}
+
+.offer-deal--featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+}
+
+.offer-deal--featured .offer-deal__inner {
+  display: contents;
+}
+
+.offer-deal--featured .offer-deal__head {
+  grid-column: 1;
+  grid-row: 1;
+  padding: 28px 28px 0;
+}
+
+.offer-deal--featured .offer-deal__media {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  aspect-ratio: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
+
+.offer-deal--featured .offer-deal__media img {
+  min-height: 280px;
+}
+
+.offer-deal--featured .offer-deal__body {
+  grid-column: 1;
+  grid-row: 2;
+  padding: 16px 28px 28px;
+}
+
+.offer-deal__stripe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--offers-wine);
+}
+
+.offer-deal--gold .offer-deal__stripe { background: #b8862e; }
+.offer-deal--spice .offer-deal__stripe { background: #9c3b25; }
+.offer-deal--leaf .offer-deal__stripe { background: #5a8f52; }
+
+.offer-deal__inner {
+  padding-left: 5px;
+}
+
+.offer-deal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 22px 0;
+}
+
+.offer-deal__tags {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.offer-deal__badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(122, 40, 54, 0.1);
+  color: var(--offers-wine);
+  border: 1px solid rgba(122, 40, 54, 0.2);
+}
+
+.offer-deal--gold .offer-deal__badge {
+  background: rgba(184, 134, 46, 0.12);
+  color: #8a6420;
+  border-color: rgba(184, 134, 46, 0.28);
+}
+
+.offer-deal--spice .offer-deal__badge {
+  background: rgba(156, 59, 37, 0.12);
+  color: #9c3b25;
+  border-color: rgba(156, 59, 37, 0.28);
+}
+
+.offer-deal--leaf .offer-deal__badge {
+  background: rgba(90, 143, 82, 0.12);
+  color: #4a7344;
+  border-color: rgba(90, 143, 82, 0.28);
+}
+
+.offer-deal__type {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--offers-muted);
+}
+
+.offer-deal__price {
+  flex-shrink: 0;
+  font-family: var(--offers-serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--offers-wine);
+}
+
+.offer-deal--gold .offer-deal__price { color: #8a6420; }
+
+.offer-deal__media {
+  margin: 16px 22px 0;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ece5da;
+}
+
+.offer-deal--featured .offer-deal__media {
+  margin: 0;
+  border-radius: 0;
+}
+
+.offer-deal__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.offer-deal__body {
+  padding: 18px 22px 24px;
+}
+
+.offer-deal__title {
+  margin: 0;
+  font-family: var(--offers-serif);
+  font-size: clamp(22px, 2.5vw, 28px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.offer-deal__detail {
+  margin: 10px 0 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--offers-muted);
+}
+
+.offer-deal__meta {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.offer-deal__meta li {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--offers-muted);
+  padding: 4px 0;
+  border-top: 1px solid var(--offers-line);
+}
+
+.offer-deal__meta li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.offer-deal__terms {
+  font-style: italic;
+}
+
+.offer-deal__cta {
+  margin-top: 18px;
+}
+
+.offer-deal__cta form {
+  display: inline;
+}
+
+/* Buttons */
+.offers-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--offers-sans);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.offers-btn--primary {
+  background: var(--offers-wine);
+  color: #fff;
+}
+
+.offers-btn--primary:hover {
+  background: #66212e;
+  transform: translateY(-1px);
+}
+
+.offers-btn--dark {
+  background: var(--offers-ink);
+  color: #fff;
+}
+
+.offers-btn--dark:hover {
+  background: #2f241d;
+}
+
+/* Newsletter */
+.offers-newsletter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(20px, 4vw, 40px);
+  flex-wrap: wrap;
+  margin-top: clamp(32px, 5vw, 48px);
+  padding: clamp(28px, 4vw, 36px) clamp(28px, 4vw, 40px);
+  border-radius: 14px;
+  background: var(--offers-ink);
+  color: #fff;
+}
+
+.offers-newsletter__copy {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.offers-newsletter__copy h2 {
+  margin: 0;
+  font-family: var(--offers-serif);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 400;
+}
+
+.offers-newsletter__copy p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.offers-newsletter__form {
+  flex: 1 1 280px;
+  min-width: 0;
+  max-width: 460px;
+}
+
+.offers-newsletter__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 6px 6px 20px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+#cust-root[data-page="promos"] .offers-newsletter__input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 0;
+  border: none;
+  border-radius: 0;
+  background: transparent !important;
+  color: var(--offers-ink) !important;
+  font-family: var(--offers-sans);
+  font-size: 14px;
+  box-shadow: none !important;
+}
+
+#cust-root[data-page="promos"] .offers-newsletter__input::placeholder {
+  color: #9a8b7b;
+}
+
+#cust-root[data-page="promos"] .offers-newsletter__input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none !important;
+}
+
+.offers-btn--subscribe {
+  flex-shrink: 0;
+  padding: 11px 22px;
+  background: var(--offers-wine) !important;
+  color: #fff !important;
+  border: 1px solid var(--offers-wine);
+}
+
+.offers-btn--subscribe:hover {
+  background: #66212e !important;
+  border-color: #66212e;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .offers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-deal--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-deal--featured .offer-deal__inner {
+    display: block;
+  }
+
+  .offer-deal--featured .offer-deal__head,
+  .offer-deal--featured .offer-deal__body,
+  .offer-deal--featured .offer-deal__media {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .offer-deal--featured .offer-deal__media {
+    margin: 16px 22px 0;
+    border-radius: 10px;
+    aspect-ratio: 16 / 10;
+    min-height: auto;
+  }
+
+  .offer-deal--featured .offer-deal__media img {
+    min-height: 0;
+  }
+
+  .offers-newsletter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .offers-newsletter__form {
+    max-width: none;
+  }
+
+  .offers-newsletter__field {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    border-radius: 16px;
+    gap: 10px;
+  }
+
+  #cust-root[data-page="promos"] .offers-newsletter__input {
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .offers-btn--subscribe {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .offers-newsletter__field {
+    padding: 10px;
+  }
+}
