@@ -7,19 +7,15 @@ use App\Http\Controllers\Admin\CateringPackageController;
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
-use App\Http\Controllers\Admin\GiftAmountController;
-use App\Http\Controllers\Admin\GiftCardController as AdminGiftCardController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\NotificationController;
-use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PromoController as AdminPromoController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReservationController as AdminReservationController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\ToastController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Customer\AccountAuthController;
 use App\Http\Controllers\Customer\AccountController;
@@ -117,9 +113,6 @@ Route::prefix(config('admin.path'))->name('admin.')->group(function () {
 
         Route::post('/notifications/mark-read', [NotificationController::class, 'markAllRead'])->name('notifications.mark-read');
 
-        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-        Route::patch('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.status');
-
         Route::get('/reservations', [AdminReservationController::class, 'index'])->name('reservations.index');
         Route::post('/reservations', [AdminReservationController::class, 'store'])->name('reservations.store');
         Route::patch('/reservations/{reservation}/status', [AdminReservationController::class, 'updateStatus'])->name('reservations.status');
@@ -180,23 +173,7 @@ Route::prefix(config('admin.path'))->name('admin.')->group(function () {
         Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
         Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
-        Route::get('/gift-cards', [AdminGiftCardController::class, 'index'])->name('gift-cards.index');
-        Route::post('/gift-cards', [AdminGiftCardController::class, 'store'])->name('gift-cards.store');
-        Route::patch('/gift-cards/{giftCard}', [AdminGiftCardController::class, 'update'])->name('gift-cards.update');
-        Route::post('/gift-cards/designs', [AdminGiftCardController::class, 'storeDesign'])->name('gift-cards.designs.store');
-        Route::patch('/gift-cards/designs/{design}', [AdminGiftCardController::class, 'updateDesign'])->name('gift-cards.designs.update');
-        Route::delete('/gift-cards/designs/{design}', [AdminGiftCardController::class, 'destroyDesign'])->name('gift-cards.designs.destroy');
-        Route::patch('/gift-cards/occasions/{occasion}', [AdminGiftCardController::class, 'updateOccasion'])->name('gift-cards.occasions.update');
-
-        Route::get('/gift-amounts', [GiftAmountController::class, 'index'])->name('gift-amounts.index');
-        Route::post('/gift-amounts', [GiftAmountController::class, 'store'])->name('gift-amounts.store');
-        Route::put('/gift-amounts/{giftAmount}', [GiftAmountController::class, 'update'])->name('gift-amounts.update');
-        Route::delete('/gift-amounts/{giftAmount}', [GiftAmountController::class, 'destroy'])->name('gift-amounts.destroy');
-
         Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
-
-        Route::get('/toast', [ToastController::class, 'index'])->name('toast.index');
-        Route::post('/toast/sync', [ToastController::class, 'sync'])->name('toast.sync');
 
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
         Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');

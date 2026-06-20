@@ -1,6 +1,9 @@
 @php
 $tax = round($cartSubtotal * \App\Http\Controllers\Customer\CartController::taxRate(), 2);
 $estTotal = round($cartSubtotal + $tax, 2);
+$toastOrderUrl = $toastPayment['orderUrl'] ?? null;
+$hasMenuItems = collect($cartItems)->contains(fn ($item) => empty($item['catering']));
+$hasCateringOnly = collect($cartItems)->isNotEmpty() && collect($cartItems)->every(fn ($item) => ! empty($item['catering']));
 @endphp
 
 <div id="cart-drawer" aria-hidden="true">
@@ -69,9 +72,19 @@ $estTotal = round($cartSubtotal + $tax, 2);
                 <div style="display:flex;justify-content:space-between;font-size:19px;font-weight:700;margin-bottom:18px;font-family:var(--serif)">
                     <span>Total</span><span style="color:var(--gold-400)">${{ number_format($estTotal, 2) }}</span>
                 </div>
-                <a href="{{ route('checkout') }}" class="btn btn-gold" style="width:100%;justify-content:center">
-                    Checkout <x-icon name="arrow" :size="18" />
-                </a>
+                @if($hasMenuItems && $toastOrderUrl)
+                    <a href="{{ $toastOrderUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width:100%;justify-content:center">
+                        Checkout on Toast <x-icon name="arrow" :size="18" />
+                    </a>
+                @elseif($hasCateringOnly)
+                    <a href="{{ route('contact') }}" class="btn btn-gold" style="width:100%;justify-content:center">
+                        Request catering quote <x-icon name="arrow" :size="18" />
+                    </a>
+                @else
+                    <a href="{{ route('checkout') }}" class="btn btn-gold" style="width:100%;justify-content:center">
+                        Checkout <x-icon name="arrow" :size="18" />
+                    </a>
+                @endif
             </div>
         @endif
     </div>

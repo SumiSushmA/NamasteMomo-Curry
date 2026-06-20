@@ -43,8 +43,8 @@
                     <div class="cust-foot-col">
                         <h4>Visit</h4>
                         <div style="font-size:14px;color:var(--sand);line-height:1.7">
-                            <div>{{ $site['address'] ?? '13754 Aurora Ave N, Suite D' }}</div>
-                            <div>{{ $site['city'] ?? 'Seattle, WA 98133' }}</div>
+                            <div>{{ $site['address'] ?? '6211 Evergreen Way' }}</div>
+                            <div>{{ $site['city'] ?? 'Everett, WA 98203' }}</div>
                             <div style="margin-top:8px;color:var(--cream-2)">{{ $site['phone'] ?? '(206) 397-3211' }}</div>
                         </div>
                     </div>
@@ -65,6 +65,7 @@
 
                 <div class="cust-foot-base">
                     <p>© {{ date('Y') }} {{ $site['restaurant_name'] ?? 'Namaste MoMo & curry house' }}. All rights reserved.</p>
+                    <p class="cust-foot-credit">Developed by: <a href="https://www.linkedin.com/in/sushma-sharma-123943293/" target="_blank" rel="noopener noreferrer">Sushma Sharma</a></p>
                 </div>
             </div>
         </div>

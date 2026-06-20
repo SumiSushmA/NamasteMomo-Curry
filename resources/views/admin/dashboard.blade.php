@@ -1,9 +1,7 @@
 @extends('layouts.admin')
 
 @php
-$statusTone = ['New' => 'gold', 'Preparing' => 'blue'];
 $maxRev = max(1, max($analytics['revenue7'] ?: [0]));
-$maxSold = max(1, ($analytics['topItems'][0]['sold'] ?? 0));
 $donutStops = [];
 $offset = 0;
 foreach ($analytics['channelSplit'] as $ch) {
@@ -69,10 +67,8 @@ $revUp = $analytics['revenueUp'];
             @foreach($analytics['revenue7'] as $i => $v)
             <div class="adm-bar-col">
                 <div class="adm-bar-val">
-                    @if($v >= 1000)
-                        ${{ number_format($v / 1000, 1) }}k
-                    @elseif($v > 0)
-                        ${{ number_format($v, 0) }}
+                    @if($v > 0)
+                        {{ (int) $v }}
                     @else
                         —
                     @endif
@@ -84,13 +80,13 @@ $revUp = $analytics['revenueUp'];
         </div>
     </div>
     <div class="adm-card" style="padding:24px;">
-        <h3 style="font-size:19px;font-weight:600;margin-bottom:18px;">Order channels</h3>
+        <h3 style="font-size:19px;font-weight:600;margin-bottom:18px;">Reservation status</h3>
         <div class="adm-donut-wrap">
             <div class="adm-donut" style="background:conic-gradient({{ implode(', ', $donutStops) }});border-radius:50%;">
                 <div class="adm-donut-center">
                     <div>
                         <div style="font-family:var(--serif);font-size:26px;font-weight:600;">100%</div>
-                        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;">Channels</div>
+                        <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;">Status</div>
                     </div>
                 </div>
             </div>
@@ -110,49 +106,45 @@ $revUp = $analytics['revenueUp'];
 <div class="adm-over-grid-2">
     <div class="adm-card" style="padding:0;">
         <div style="padding:20px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;">
-            <h3 style="font-size:19px;font-weight:600;">Live orders</h3>
-            <a href="{{ route('admin.orders.index') }}" class="btn btn-ghost btn-sm" style="text-decoration:none;">
+            <h3 style="font-size:19px;font-weight:600;">Upcoming reservations</h3>
+            <a href="{{ route('admin.reservations.index') }}" class="btn btn-ghost btn-sm" style="text-decoration:none;">
                 View all <x-icon name="arrow" :size="15"/>
             </a>
         </div>
         <div style="padding:6px 12px;">
-            @forelse(array_slice($liveOrders, 0, 5) as $o)
-            @php $itemCount = array_sum(array_column($o['items'], 'qty')); @endphp
-            <a href="{{ route('admin.orders.index', ['q' => $o['id']]) }}" style="display:flex;align-items:center;gap:12px;padding:12px;text-decoration:none;color:inherit;border-radius:10px;transition:background .15s;" onmouseover="this.style.background='var(--ink-800)'" onmouseout="this.style.background='transparent'">
+            @forelse($upcomingReservations as $r)
+            <a href="{{ route('admin.reservations.index') }}" style="display:flex;align-items:center;gap:12px;padding:12px;text-decoration:none;color:inherit;border-radius:10px;transition:background .15s;" onmouseover="this.style.background='var(--ink-800)'" onmouseout="this.style.background='transparent'">
                 <div style="width:40px;height:40px;border-radius:10px;background:var(--ink-800);display:grid;place-items:center;color:var(--gold-400);flex-shrink:0;">
-                    <x-icon :name="$o['type'] === 'Delivery' ? 'truck' : 'bag'" :size="18"/>
+                    <x-icon name="cal" :size="18"/>
                 </div>
                 <div style="flex:1;min-width:0;">
-                    <div style="font-weight:600;font-size:14.5px;">{{ $o['id'] }} · {{ $o['customer'] }}</div>
-                    <div style="font-size:13px;color:var(--muted);">{{ $itemCount }} items · {{ $o['time'] }}</div>
+                    <div style="font-weight:600;font-size:14.5px;">{{ $r['id'] }} · {{ $r['customer'] }}</div>
+                    <div style="font-size:13px;color:var(--muted);">Party of {{ $r['party'] }} · {{ $r['date'] }} {{ $r['time'] }}</div>
                 </div>
                 <div style="text-align:right;">
-                    <div style="font-weight:600;color:var(--gold-400);font-family:var(--serif);font-size:16px;">${{ number_format($o['total']) }}</div>
-                    @include('admin.partials.badge', ['tone' => $statusTone[$o['status']] ?? 'blue', 'dot' => true, 'label' => $o['status']])
+                    @include('admin.partials.badge', ['tone' => ($r['status'] ?? '') === 'Pending' ? 'gold' : 'blue', 'dot' => true, 'label' => $r['status']])
                 </div>
             </a>
             @empty
-            <div style="padding:28px 16px;text-align:center;color:var(--muted);font-size:14px;">No active orders right now.</div>
+            <div style="padding:28px 16px;text-align:center;color:var(--muted);font-size:14px;">No upcoming reservations right now.</div>
             @endforelse
         </div>
     </div>
     <div class="adm-card" style="padding:0;">
         <div style="padding:20px 24px;border-bottom:1px solid var(--line);">
-            <h3 style="font-size:19px;font-weight:600;">Top dishes this period</h3>
+            <h3 style="font-size:19px;font-weight:600;">Next bookings</h3>
         </div>
         <div style="padding:12px 24px;">
             @forelse($analytics['topItems'] as $i => $it)
             <div style="padding:11px 0;border-bottom:{{ $i < count($analytics['topItems']) - 1 ? '1px solid var(--line-soft)' : 'none' }};">
-                <div style="display:flex;justify-content:space-between;margin-bottom:7px;font-size:14px;">
-                    <span style="font-weight:600;"><span style="color:var(--faint);margin-right:8px;">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span>{{ $it['name'] }}</span>
-                    <span style="color:var(--sand);">{{ $it['sold'] }} sold · ${{ number_format($it['rev']) }}</span>
+                <div style="display:flex;justify-content:space-between;gap:12px;font-size:14px;">
+                    <span style="font-weight:600;">{{ $it['name'] }}</span>
+                    <span style="color:var(--sand);white-space:nowrap;">{{ $it['ref'] }}</span>
                 </div>
-                <div style="height:6px;background:var(--ink-800);border-radius:99px;">
-                    <div style="width:{{ round($it['sold'] / $maxSold * 100) }}%;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold-700),var(--gold-500));"></div>
-                </div>
+                <div style="font-size:13px;color:var(--muted);margin-top:4px;">{{ $it['detail'] }}</div>
             </div>
             @empty
-            <div style="padding:28px 0;text-align:center;color:var(--muted);font-size:14px;">No dish sales in this period yet.</div>
+            <div style="padding:28px 0;text-align:center;color:var(--muted);font-size:14px;">No upcoming bookings in this period.</div>
             @endforelse
         </div>
     </div>

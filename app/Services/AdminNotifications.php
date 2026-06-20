@@ -4,12 +4,9 @@ namespace App\Services;
 
 use App\Models\CateringInquiry;
 use App\Models\ContactMessage;
-use App\Models\Order;
 use App\Models\Reservation;
 use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Carbon;
 
 class AdminNotifications
 {
@@ -17,7 +14,6 @@ class AdminNotifications
     public static function get(?User $user = null): array
     {
         $items = collect()
-            ->merge(static::orderNotifications($user))
             ->merge(static::reservationNotifications($user))
             ->merge(static::cateringNotifications($user))
             ->merge(static::inquiryNotifications($user))
@@ -39,8 +35,7 @@ class AdminNotifications
 
     public static function actionableCount(?User $user = null): int
     {
-        return static::orderQuery($user)->count()
-            + static::reservationQuery($user)->count()
+        return static::reservationQuery($user)->count()
             + static::cateringQuery($user)->count()
             + static::inquiryQuery($user)->count();
     }
@@ -50,7 +45,7 @@ class AdminNotifications
         return $user?->notifications_cleared_at;
     }
 
-    private static function applyClearedFilter(Builder $query, string $column, ?User $user): Builder
+    private static function applyClearedFilter($query, string $column, ?User $user)
     {
         $since = static::clearedSince($user);
 
@@ -61,24 +56,7 @@ class AdminNotifications
         return $query;
     }
 
-    private static function orderQuery(?User $user): Builder
-    {
-        $query = Order::query()->whereIn('status', ['New', 'Preparing']);
-
-        $since = static::clearedSince($user);
-        if ($since) {
-            $query->where(function (Builder $q) use ($since) {
-                $q->where('placed_at', '>', $since)
-                    ->orWhere(function (Builder $q2) use ($since) {
-                        $q2->whereNull('placed_at')->where('created_at', '>', $since);
-                    });
-            });
-        }
-
-        return $query;
-    }
-
-    private static function reservationQuery(?User $user): Builder
+    private static function reservationQuery(?User $user)
     {
         return static::applyClearedFilter(
             Reservation::query()->where('status', 'Pending'),
@@ -87,7 +65,7 @@ class AdminNotifications
         );
     }
 
-    private static function cateringQuery(?User $user): Builder
+    private static function cateringQuery(?User $user)
     {
         return static::applyClearedFilter(
             CateringInquiry::query()->where('status', 'New'),
@@ -96,7 +74,7 @@ class AdminNotifications
         );
     }
 
-    private static function inquiryQuery(?User $user): Builder
+    private static function inquiryQuery(?User $user)
     {
         return static::applyClearedFilter(
             ContactMessage::query()->where('status', 'Unread'),
@@ -105,30 +83,7 @@ class AdminNotifications
         );
     }
 
-    private static function orderNotifications(?User $user): Collection
-    {
-        return static::orderQuery($user)
-            ->orderByDesc('placed_at')
-            ->limit(8)
-            ->get()
-            ->map(function (Order $order) {
-                $placedAt = $order->placed_at ?? $order->created_at;
-                $isNew = $order->status === 'New';
-
-                return [
-                    'type' => 'order',
-                    'icon' => $order->fulfillment_type === 'delivery' ? 'truck' : 'bag',
-                    'tone' => $isNew ? 'gold' : 'blue',
-                    'title' => ($isNew ? 'New order' : 'Order in progress').' · '.$order->order_number,
-                    'message' => $order->customer_name.' · $'.number_format((float) $order->total, 0).' · '.ucfirst($order->fulfillment_type),
-                    'url' => route('admin.orders.index', ['q' => $order->order_number, 'status' => $isNew ? 'New' : 'Preparing']),
-                    'at' => $placedAt?->timestamp ?? 0,
-                    'time' => $placedAt?->diffForHumans(short: true) ?? '—',
-                ];
-            });
-    }
-
-    private static function reservationNotifications(?User $user): Collection
+    private static function reservationNotifications(?User $user)
     {
         return static::reservationQuery($user)
             ->orderByDesc('created_at')
@@ -148,7 +103,7 @@ class AdminNotifications
             });
     }
 
-    private static function cateringNotifications(?User $user): Collection
+    private static function cateringNotifications(?User $user)
     {
         return static::cateringQuery($user)
             ->orderByDesc('created_at')
@@ -168,7 +123,7 @@ class AdminNotifications
             });
     }
 
-    private static function inquiryNotifications(?User $user): Collection
+    private static function inquiryNotifications(?User $user)
     {
         return static::inquiryQuery($user)
             ->orderByDesc('created_at')

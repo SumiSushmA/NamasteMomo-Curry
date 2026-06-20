@@ -6,10 +6,10 @@
 
 @section('content')
 @php
-    $phone = $site['phone'] ?? '(206) 397-3211';
+    $phone = $site['phone'] ?? '(425) 543-3032';
     $email = $site['email'] ?? 'hello@indiannepalikitchen.com';
-    $address = $site['address'] ?? '13754 Aurora Ave N, Suite D';
-    $city = $site['city'] ?? 'Seattle, WA 98133';
+    $address = $site['address'] ?? '6211 Evergreen Way';
+    $city = $site['city'] ?? 'Everett, WA 98203';
     $hours = $site['hours'] ?? 'Daily · 10:00 AM – 9:30 PM';
     $mapsQuery = urlencode(trim($address.', '.$city));
     $mapsLink = 'https://maps.google.com/?q='.$mapsQuery;

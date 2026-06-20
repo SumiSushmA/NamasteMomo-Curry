@@ -42,11 +42,11 @@ $tab = $tab ?? 'restaurant';
                         </label>
                         <label style="display:flex;flex-direction:column;gap:6px;">
                             <span style="font-size:13px;color:var(--sand);font-weight:600;">Address</span>
-                            <input name="address" value="{{ $settings['address'] ?? '13754 Aurora Ave N, Suite D' }}" style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
+                            <input name="address" value="{{ $settings['address'] ?? '6211 Evergreen Way' }}" style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
                         </label>
                         <label style="display:flex;flex-direction:column;gap:6px;">
                             <span style="font-size:13px;color:var(--sand);font-weight:600;">City & postal</span>
-                            <input name="city" value="{{ $settings['city'] ?? 'Seattle, WA 98133' }}" style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
+                            <input name="city" value="{{ $settings['city'] ?? 'Everett, WA 98203' }}" style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
                         </label>
                         <label style="display:flex;flex-direction:column;gap:6px;">
                             <span style="font-size:13px;color:var(--sand);font-weight:600;">Google Maps embed URL (optional)</span>
@@ -93,37 +93,13 @@ $tab = $tab ?? 'restaurant';
                     </div>
 
                     <div class="adm-card" style="padding:22px;">
-                        <h3 style="font-size:18px;font-weight:600;margin-bottom:16px;">Ordering & pricing</h3>
+                        <h3 style="font-size:18px;font-weight:600;margin-bottom:16px;">Pricing</h3>
                         <div style="display:grid;grid-template-columns:1fr;gap:14px;">
                             <label style="display:flex;flex-direction:column;gap:6px;">
                                 <span style="font-size:13px;color:var(--sand);font-weight:600;">Tax rate</span>
                                 <input name="tax_rate" type="number" step="0.0001" value="{{ $settings['tax_rate'] ?? 0.0875 }}" style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
                             </label>
-                            <label style="display:flex;flex-direction:column;gap:6px;">
-                                <span style="font-size:13px;color:var(--sand);font-weight:600;">Delivery fee ($)</span>
-                                <input name="delivery_fee" type="number" step="0.01" value="{{ $settings['delivery_fee'] ?? 3.99 }}" style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
-                            </label>
-                            <label style="display:flex;flex-direction:column;gap:6px;">
-                                <span style="font-size:13px;color:var(--sand);font-weight:600;">Free delivery min ($)</span>
-                                <input name="free_delivery_min" type="number" step="0.01" value="{{ $settings['free_delivery_min'] ?? 40 }}" style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
-                            </label>
-                        </div>
-                        <div style="margin-top:18px;display:flex;flex-direction:column;gap:12px;">
-                            @foreach([
-                                ['online_ordering_enabled', 'Online ordering', 'Accept orders from the website'],
-                                ['delivery_enabled', 'Delivery', 'Offer delivery within 4 miles'],
-                                ['tips_enabled', 'Allow tips', 'Show tip options at checkout'],
-                                ['sms_alerts_enabled', 'SMS order alerts', 'Text the kitchen on new orders'],
-                            ] as $toggle)
-                            <label style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line-soft);cursor:pointer;">
-                                <div>
-                                    <div style="font-weight:600;font-size:14.5px;">{{ $toggle[1] }}</div>
-                                    <div style="font-size:13px;color:var(--muted);margin-top:2px;">{{ $toggle[2] }}</div>
-                                </div>
-                                <input type="hidden" name="{{ $toggle[0] }}" value="0">
-                                <input type="checkbox" name="{{ $toggle[0] }}" value="1" @checked(($settings[$toggle[0]] ?? 'true') === true || ($settings[$toggle[0]] ?? 'true') === 'true') style="width:18px;height:18px;accent-color:var(--gold-600);">
-                            </label>
-                            @endforeach
+                            <p style="margin:0;font-size:13px;color:var(--muted);line-height:1.5;">Online ordering and gift cards are handled on Toast. Use this tax rate for any on-site estimates shown on the website.</p>
                         </div>
                     </div>
                 </div>
@@ -150,7 +126,7 @@ $tab = $tab ?? 'restaurant';
                     <p style="grid-column:1/-1;margin:0;font-size:12px;color:var(--muted);">Owners always have full access. For other roles, choose which admin sections they can open.</p>
                     @foreach($areas as $area)
                         <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sand);">
-                            <input type="checkbox" name="permissions[]" value="{{ $area }}" @checked(in_array($area, old('permissions', ['dashboard', 'orders', 'reservations', 'profile']), true)) style="accent-color:var(--gold-600);">
+                            <input type="checkbox" name="permissions[]" value="{{ $area }}" @checked(in_array($area, old('permissions', ['dashboard', 'reservations', 'inquiries', 'profile']), true)) style="accent-color:var(--gold-600);">
                             {{ ucfirst($area) }}
                         </label>
                     @endforeach

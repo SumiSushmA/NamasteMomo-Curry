@@ -16,10 +16,10 @@ class DashboardController extends Controller
             ? $request->query('range')
             : '7';
 
-        $orders = AdminData::getOrders();
         $badges = AdminData::getNavBadges();
         $analytics = AdminData::getAnalytics($range);
         $dashboard = AdminData::getDashboardStats($range);
+        $reservations = AdminData::getReservations();
 
         $user = $request->user();
         $firstName = Str::before($user->name ?? 'there', ' ');
@@ -45,21 +45,20 @@ class DashboardController extends Controller
                 'in the contact inbox',
                 'admin.inquiries.index',
             ] : null,
-            $badges['orders'] > 0 ? [
-                'bag', 'green',
-                $badges['orders'].' new order'.($badges['orders'] === 1 ? '' : 's'),
-                'need attention',
-                'admin.orders.index',
-            ] : null,
         ]));
+
+        $upcomingReservations = collect($reservations)
+            ->filter(fn ($r) => in_array($r['status'], ['Confirmed', 'Pending'], true))
+            ->take(5)
+            ->values()
+            ->all();
 
         return view('admin.dashboard', [
             'active' => 'overview',
             'range' => $range,
             'greeting' => $greeting,
             'firstName' => $firstName,
-            'orders' => $orders,
-            'liveOrders' => array_values(array_filter($orders, fn ($o) => in_array($o['status'], ['New', 'Preparing'], true))),
+            'upcomingReservations' => $upcomingReservations,
             'analytics' => $analytics,
             'dashboardStats' => $dashboard['cards'],
             'tasks' => $tasks,

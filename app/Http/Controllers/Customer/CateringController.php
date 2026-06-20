@@ -6,6 +6,7 @@ use App\Data\CateringMenu;
 use App\Http\Controllers\Controller;
 use App\Support\CateringCart;
 use App\Support\SiteContent;
+use App\Services\Toast\ToastConfiguration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -64,6 +65,12 @@ class CateringController extends Controller
         }
 
         CateringCart::setPerPerson((int) $validated['guest_count'], $selections);
+
+        if (ToastConfiguration::onlineOrderUrl()) {
+            return redirect()
+                ->route('contact')
+                ->with('success', 'Catering menu saved. Tell us about your event and our team will confirm your quote.');
+        }
 
         return redirect()
             ->route('checkout')

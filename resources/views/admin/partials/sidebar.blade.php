@@ -3,7 +3,6 @@ $authUser = auth()->user();
 $nav = [
     ['group' => 'Operations', 'items' => [
         ['id' => 'overview', 'label' => 'Overview', 'icon' => 'grid', 'route' => 'admin.dashboard'],
-        ['id' => 'orders', 'label' => 'Orders', 'icon' => 'bag', 'badge' => $badges['orders'] ?? 0, 'route' => 'admin.orders.index'],
         ['id' => 'reservations', 'label' => 'Reservations', 'icon' => 'cal', 'badge' => $badges['reservations'] ?? 0, 'route' => 'admin.reservations.index'],
         ['id' => 'catering', 'label' => 'Catering', 'icon' => 'box', 'badge' => $badges['catering'] ?? 0, 'route' => 'admin.catering.index'],
         ['id' => 'contact', 'label' => 'Inquiries', 'icon' => 'mail', 'badge' => $badges['contact'] ?? 0, 'route' => 'admin.inquiries.index'],
@@ -15,10 +14,8 @@ $nav = [
         ['id' => 'content', 'label' => 'Website content', 'icon' => 'file', 'route' => 'admin.content.index'],
         ['id' => 'about', 'label' => 'About page', 'icon' => 'users', 'route' => 'admin.about.index'],
         ['id' => 'gallery', 'label' => 'Gallery', 'icon' => 'image', 'route' => 'admin.gallery.index'],
-        ['id' => 'giftcards', 'label' => 'Gift cards', 'icon' => 'tag', 'route' => 'admin.gift-cards.index'],
     ]],
     ['group' => 'System', 'items' => [
-        ['id' => 'toast', 'label' => 'Toast POS', 'icon' => 'refresh', 'route' => 'admin.toast.index'],
         ['id' => 'settings', 'label' => 'Settings', 'icon' => 'settings', 'route' => 'admin.settings.index'],
     ]],
 ];
@@ -37,7 +34,6 @@ $nav = [
                     @php
                         $area = match (true) {
                             str_contains($item['route'], 'dashboard') => 'dashboard',
-                            str_contains($item['route'], 'orders') => 'orders',
                             str_contains($item['route'], 'reservations') => 'reservations',
                             str_contains($item['route'], 'catering') => 'catering',
                             str_contains($item['route'], 'inquiries') => 'inquiries',
@@ -47,8 +43,6 @@ $nav = [
                             str_contains($item['route'], 'content') => 'content',
                             str_contains($item['route'], 'about') => 'about',
                             str_contains($item['route'], 'gallery') => 'gallery',
-                            str_contains($item['route'], 'gift') => 'giftcards',
-                            str_contains($item['route'], 'toast') => 'toast',
                             str_contains($item['route'], 'users') => 'users',
                             str_contains($item['route'], 'settings') => 'settings',
                             str_contains($item['route'], 'profile') => 'profile',

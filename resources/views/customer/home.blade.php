@@ -153,7 +153,7 @@
                         <div class="gem-sig-card__body">
                             <h3>{{ $item['name'] }}</h3>
                             <p>{{ Str::limit($item['desc'] ?? '', 90) }}</p>
-                            <span class="gem-sig-card__price">${{ number_format((float) $item['price'], 0) }}</span>
+                            <span class="gem-sig-card__price">${{ \App\Support\MenuPrice::format($item['price']) }}</span>
                         </div>
                     </a>
                 @endforeach

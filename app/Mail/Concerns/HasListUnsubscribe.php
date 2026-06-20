@@ -7,6 +7,13 @@ use Illuminate\Mail\Mailables\Headers;
 
 trait HasListUnsubscribe
 {
+    abstract protected function unsubscribeRecipientEmail(): ?string;
+
+    public function headers(): Headers
+    {
+        return $this->listUnsubscribeHeaders($this->unsubscribeRecipientEmail()) ?? new Headers;
+    }
+
     protected function listUnsubscribeHeaders(?string $recipientEmail): ?Headers
     {
         if (! $recipientEmail) {

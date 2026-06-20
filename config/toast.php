@@ -4,12 +4,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Toast API credentials
+    | Toast API credentials (optional)
     |--------------------------------------------------------------------------
     |
     | When client_id, client_secret, restaurant_guid, and merchant_uuid are
-    | all set, the app automatically uses live Toast payments. Otherwise
-    | checkout runs in mock/demo mode — no code changes required.
+    | all set, checkout on this website uses live Toast API payments.
+    | Otherwise use TOAST_ONLINE_ORDER_URL so guests pay on Toast's site.
     |
     */
 
@@ -26,5 +26,29 @@ return [
     'dining_option_pickup_guid' => env('TOAST_DINING_OPTION_PICKUP_GUID'),
     'revenue_center_guid' => env('TOAST_REVENUE_CENTER_GUID'),
     'gift_card_menu_item_guid' => env('TOAST_GIFT_CARD_MENU_ITEM_GUID'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Toast online ordering page
+    |--------------------------------------------------------------------------
+    |
+    | When set, the public /menu route and "Order Online" links send guests to
+    | Toast's hosted menu instead of the built-in website menu.
+    |
+    */
+
+    'online_order_url' => env('TOAST_ONLINE_ORDER_URL'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Toast eGift card page
+    |--------------------------------------------------------------------------
+    |
+    | When set, the public /gift-cards route sends guests to Toast's hosted
+    | gift card purchase page instead of the built-in website form.
+    |
+    */
+
+    'gift_card_url' => env('TOAST_GIFT_CARD_URL'),
 
 ];

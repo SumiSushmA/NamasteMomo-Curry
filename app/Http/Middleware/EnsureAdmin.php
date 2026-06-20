@@ -32,7 +32,6 @@ class EnsureAdmin
         }
 
         return match (true) {
-            str_starts_with($name, 'admin.orders.') => 'orders',
             str_starts_with($name, 'admin.reservations.') => 'reservations',
             str_starts_with($name, 'admin.catering.') => 'catering',
             str_starts_with($name, 'admin.inquiries.') => 'inquiries',
@@ -42,8 +41,6 @@ class EnsureAdmin
             str_starts_with($name, 'admin.content.') => 'content',
             str_starts_with($name, 'admin.about.') => 'about',
             str_starts_with($name, 'admin.gallery.') => 'gallery',
-            str_starts_with($name, 'admin.gift-cards.') || str_starts_with($name, 'admin.gift-amounts.') => 'giftcards',
-            str_starts_with($name, 'admin.toast.') => 'toast',
             str_starts_with($name, 'admin.users.') => 'users',
             str_starts_with($name, 'admin.settings.') => 'settings',
             str_starts_with($name, 'admin.profile.') => 'profile',

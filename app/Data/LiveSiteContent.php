@@ -12,25 +12,26 @@ class LiveSiteContent
     {
         return [
             'restaurant_name' => 'Namaste MoMo & curry house',
-            'address' => '13754 Aurora Ave N, Suite D',
-            'city' => 'Seattle, WA 98133',
-            'phone' => '(206) 397-3211',
+            'address' => '6211 Evergreen Way',
+            'city' => 'Everett, WA 98203',
+            'phone' => '(425) 543-3032',
             'email' => 'hello@indiannepalikitchen.com',
             'hours' => 'Daily · 10:00 AM – 9:30 PM',
             'closed_days' => '',
             'tax_rate' => '0.1025',
             'delivery_fee' => '6.98',
             'free_delivery_min' => '999',
-            'footer_tagline' => 'Namaste MoMo & curry house — hand-pleated momo, tandoor-fired favorites, and homestyle curries on Aurora Avenue, Seattle.',
+            'footer_tagline' => 'Namaste MoMo & curry house — hand-pleated momo, tandoor-fired favorites, and homestyle curries on Evergreen Way, Everett.',
             'online_ordering_enabled' => 'true',
             'delivery_enabled' => 'true',
             'tips_enabled' => 'true',
             'sms_alerts_enabled' => 'true',
-            'toast_location' => '13754 Aurora Ave N · Seattle',
+            'toast_location' => '6211 Evergreen Way · Everett',
             'toast_connected' => 'true',
             'instagram_url' => 'https://www.instagram.com/indiannepalikitchen',
             'facebook_url' => 'https://www.facebook.com/indiannepalikitchen',
-            'whatsapp_url' => 'https://wa.me/12063973211',
+            'whatsapp_url' => 'https://wa.me/14255433032',
+            'map_embed_url' => 'https://maps.google.com/maps?q=6211+Evergreen+Way,+Everett,+WA+98203&hl=en&z=16&output=embed',
         ];
     }
 

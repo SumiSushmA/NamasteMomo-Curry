@@ -3,9 +3,13 @@
 @php
 $h = (int) ($h ?? $height);
 $r = (int) ($r ?? $radius);
-$address = trim(($site['address'] ?? '13754 Aurora Ave N, Suite D').', '.($site['city'] ?? 'Seattle, WA 98133'));
+$street = trim($site['address'] ?? '6211 Evergreen Way');
+$cityLine = trim($site['city'] ?? 'Everett, WA 98203');
+$address = trim($street.', '.$cityLine);
 $mapsLink = 'https://maps.google.com/?q='.urlencode($address);
-$embedUrl = $site['map_embed_url'] ?? ('https://maps.google.com/maps?q='.urlencode($address).'&z=15&ie=UTF8&iwloc=&output=embed');
+$embedUrl = filled($site['map_embed_url'] ?? null)
+    ? $site['map_embed_url']
+    : 'https://maps.google.com/maps?q='.urlencode($address).'&hl=en&z=16&output=embed';
 $wrapperStyle = collect([
     "height: {$h}px",
     "border-radius: {$r}px",

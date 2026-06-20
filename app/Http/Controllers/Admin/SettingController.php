@@ -53,24 +53,14 @@ class SettingController extends Controller
             'whatsapp_url' => 'nullable|url|max:255',
             'map_embed_url' => 'nullable|url|max:500',
             'tax_rate' => 'required|numeric|min:0|max:1',
-            'delivery_fee' => 'required|numeric|min:0',
-            'free_delivery_min' => 'required|numeric|min:0',
-            'online_ordering_enabled' => 'nullable|boolean',
-            'delivery_enabled' => 'nullable|boolean',
-            'tips_enabled' => 'nullable|boolean',
-            'sms_alerts_enabled' => 'nullable|boolean',
         ]);
 
         foreach ([
             'restaurant_name', 'address', 'city', 'phone', 'email', 'hours', 'closed_days', 'footer_tagline',
             'instagram_url', 'facebook_url', 'whatsapp_url', 'map_embed_url',
-            'tax_rate', 'delivery_fee', 'free_delivery_min',
+            'tax_rate',
         ] as $key) {
             Setting::set($key, $request->input($key, ''));
-        }
-
-        foreach (['online_ordering_enabled', 'delivery_enabled', 'tips_enabled', 'sms_alerts_enabled'] as $key) {
-            Setting::set($key, $request->boolean($key));
         }
 
         return back()->with('success', 'Settings saved.');

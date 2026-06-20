@@ -4,14 +4,20 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Services\RestaurantData;
+use App\Services\Toast\ToastConfiguration;
 use App\Support\SiteContent;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class MenuController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request): View|RedirectResponse
     {
+        if ($url = ToastConfiguration::onlineOrderUrl()) {
+            return redirect()->away($url);
+        }
+
         $menu = RestaurantData::menu();
         $query = strtolower(trim($request->input('q', '')));
         $vegOnly = $request->boolean('veg');

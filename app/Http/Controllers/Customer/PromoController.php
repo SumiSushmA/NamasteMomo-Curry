@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\MenuItem;
 use App\Models\Promo;
 use App\Services\RestaurantData;
+use App\Services\Toast\ToastConfiguration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -41,6 +42,10 @@ class PromoController extends Controller
         $cart = session('cart', []);
         $cart[$item->slug] = ($cart[$item->slug] ?? 0) + 1;
         session(['cart' => $cart]);
+
+        if ($url = ToastConfiguration::onlineOrderUrl()) {
+            return redirect()->away($url);
+        }
 
         return redirect()
             ->route('checkout')

@@ -74,7 +74,6 @@ class User extends Authenticatable
     {
         return [
             'dashboard',
-            'orders',
             'reservations',
             'catering',
             'inquiries',
@@ -84,8 +83,6 @@ class User extends Authenticatable
             'content',
             'about',
             'gallery',
-            'giftcards',
-            'toast',
             'users',
             'settings',
             'profile',

@@ -12,7 +12,7 @@
 @php
     $pullQuote = $about['story'][0] ?? '';
     $storyRest = array_slice($about['story'], 1);
-    $mapUrl = 'https://maps.google.com/?q=' . urlencode(($site['address'] ?? '13754 Aurora Ave N') . ', ' . ($site['city'] ?? 'Seattle, WA'));
+    $mapUrl = 'https://maps.google.com/?q=' . urlencode(($site['address'] ?? '6211 Evergreen Way') . ', ' . ($site['city'] ?? 'Everett, WA 98203'));
     $teamSizes = ['lg', 'lg', 'sm', 'sm', 'sm', 'sm'];
 @endphp
 
@@ -142,7 +142,7 @@
                         <x-icon name="pin" :size="22" />
                     </div>
                     <h3>Address</h3>
-                    <p>{{ $site['address'] ?? '13754 Aurora Ave N, Suite D' }}<br>{{ $site['city'] ?? 'Seattle, WA 98133' }}</p>
+                    <p>{{ $site['address'] ?? '6211 Evergreen Way' }}<br>{{ $site['city'] ?? 'Everett, WA 98203' }}</p>
                     <a href="{{ $mapUrl }}" target="_blank" rel="noopener" class="abt-locate__link">Open in Maps →</a>
                 </article>
                 <article class="abt-locate__card">

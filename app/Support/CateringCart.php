@@ -82,6 +82,11 @@ class CateringCart
         return $count;
     }
 
+    public static function hasLines(): bool
+    {
+        return self::itemCount() > 0;
+    }
+
     /** @return array<int, array<string, mixed>> */
     public static function lines(): array
     {

@@ -11,6 +11,7 @@ use App\Models\MenuItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Support\CateringCart;
+use App\Services\Toast\ToastConfiguration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,6 +28,10 @@ class CheckoutController extends Controller
 
         if ($cart['cartCount'] === 0) {
             return redirect()->route('menu')->with('info', 'Your bag is empty.');
+        }
+
+        if (ToastConfiguration::usesHostedMenu()) {
+            return ToastConfiguration::resolveCheckoutRedirect();
         }
 
         $mode = $request->input('mode', session('order_mode', 'delivery'));
@@ -59,6 +64,10 @@ class CheckoutController extends Controller
 
         if ($cart['cartCount'] === 0) {
             return redirect()->route('menu')->with('info', 'Your bag is empty.');
+        }
+
+        if (ToastConfiguration::usesHostedMenu()) {
+            return ToastConfiguration::resolveCheckoutRedirect();
         }
 
         $request->validate([

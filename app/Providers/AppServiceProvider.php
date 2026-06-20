@@ -49,8 +49,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('customerUser', auth('customer')->user());
             $view->with('toastPayment', [
                 'mode' => ToastConfiguration::mode(),
-                'live' => ToastConfiguration::isLive(),
+                'live' => ToastConfiguration::usesRealPayments(),
                 'label' => ToastConfiguration::label(),
+                'orderUrl' => ToastConfiguration::onlineOrderUrl(),
+                'giftCardUrl' => ToastConfiguration::giftCardUrl(),
             ]);
         });
 

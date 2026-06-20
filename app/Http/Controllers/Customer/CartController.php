@@ -7,6 +7,7 @@ use App\Models\MenuItem;
 use App\Models\Promo;
 use App\Models\Setting;
 use App\Support\CateringCart;
+use App\Services\Toast\ToastConfiguration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -114,6 +115,10 @@ class CartController extends Controller
             return back()->with('error', 'Item not found or unavailable.');
         }
 
+        if (ToastConfiguration::onlineOrderUrl()) {
+            return redirect()->away(ToastConfiguration::onlineOrderUrl());
+        }
+
         $cart = session('cart', []);
         $cart[$item->slug] = ($cart[$item->slug] ?? 0) + 1;
         session(['cart' => $cart]);
@@ -188,7 +193,7 @@ class CartController extends Controller
         }
 
         if ($request->input('redirect') === 'checkout') {
-            return redirect()->route('checkout');
+            return ToastConfiguration::resolveCheckoutRedirect();
         }
 
         return back();
@@ -200,6 +205,10 @@ class CartController extends Controller
 
         if ($cart['cartCount'] === 0) {
             return redirect()->route('menu')->with('info', 'Your bag is empty.');
+        }
+
+        if (ToastConfiguration::usesHostedMenu()) {
+            return ToastConfiguration::resolveCheckoutRedirect();
         }
 
         return view('customer.checkout.index', array_merge($cart, [

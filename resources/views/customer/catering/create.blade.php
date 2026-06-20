@@ -182,7 +182,7 @@
             <div class="cater-builder__intro">
                 <p class="cater-kicker">Tray menu</p>
                 <h2 class="cater-section-title">Pick your trays</h2>
-                <p class="cater-section-lead">Ready-to-serve portions for offices, pujas, and celebrations. Add trays to your cart — mix with regular menu items at checkout.</p>
+                <p class="cater-section-lead">Ready-to-serve portions for offices, pujas, and celebrations. Add trays to your cart, then request a quote from our team.</p>
             </div>
 
             <div class="cater-tray-grid">
@@ -208,7 +208,11 @@
             </div>
 
             <div class="cater-trays-cta">
-                <a href="{{ route('checkout') }}" class="btn btn-gold">Continue to checkout <x-icon name="arrow" :size="17" /></a>
+                @if($toastOrderUrl = \App\Services\Toast\ToastConfiguration::onlineOrderUrl())
+                    <a href="{{ route('contact') }}" class="btn btn-gold">Request catering quote <x-icon name="arrow" :size="17" /></a>
+                @else
+                    <a href="{{ route('checkout') }}" class="btn btn-gold">Continue to checkout <x-icon name="arrow" :size="17" /></a>
+                @endif
             </div>
         </section>
     @endif

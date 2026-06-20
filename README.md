@@ -187,6 +187,10 @@ Leave all `TOAST_*` variables empty for **mock checkout**. Set all core keys to 
 | `TOAST_DINING_OPTION_PICKUP_GUID` | Pickup dining option |
 | `TOAST_REVENUE_CENTER_GUID` | Revenue center |
 | `TOAST_GIFT_CARD_MENU_ITEM_GUID` | Gift card menu item in Toast |
+| `TOAST_ONLINE_ORDER_URL` | Hosted Toast menu URL (redirects `/menu`) |
+| `TOAST_GIFT_CARD_URL` | Hosted Toast eGift card URL (redirects `/gift-cards`) |
+
+After adding live Toast API keys, run **`php artisan toast:sync-menu`** (or use **Sync now** in the admin Toast page) to pull current item **names and prices** from Toast into the website database. The homepage “Signature dishes” section reads from that database.
 
 ### Environment-specific notes
 

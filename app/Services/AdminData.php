@@ -95,101 +95,92 @@ class AdminData
     {
         [$start, $end, $prevStart, $prevEnd, $bucketType, $bucketCount] = self::resolveDashboardRange($range);
 
-        $orders = Order::query()->whereBetween('placed_at', [$start, $end])->get();
-        $prevOrders = Order::query()->whereBetween('placed_at', [$prevStart, $prevEnd])->get();
+        $reservations = Reservation::query()
+            ->whereBetween('reserved_date', [$start->toDateString(), $end->toDateString()])
+            ->get();
+        $prevReservations = Reservation::query()
+            ->whereBetween('reserved_date', [$prevStart->toDateString(), $prevEnd->toDateString()])
+            ->get();
 
-        $revenueSeries = [];
-        $revenueLabels = [];
+        $activitySeries = [];
+        $activityLabels = [];
 
         if ($bucketType === 'hour') {
             for ($h = 0; $h < 24; $h++) {
-                $revenueLabels[] = sprintf('%02d', $h);
-                $revenueSeries[] = (float) $orders
-                    ->filter(fn ($o) => (int) $o->placed_at->format('G') === $h)
-                    ->sum('total');
+                $activityLabels[] = sprintf('%02d', $h);
+                $activitySeries[] = (float) $reservations
+                    ->filter(fn ($r) => (int) substr((string) $r->reserved_time, 0, 2) === $h)
+                    ->count();
             }
         } else {
             for ($i = $bucketCount - 1; $i >= 0; $i--) {
                 $day = now()->subDays($i)->startOfDay();
-                $revenueLabels[] = $bucketCount <= 7 ? $day->format('D') : $day->format('M j');
-                $revenueSeries[] = (float) $orders
-                    ->filter(fn ($o) => $o->placed_at->isSameDay($day))
-                    ->sum('total');
+                $activityLabels[] = $bucketCount <= 7 ? $day->format('D') : $day->format('M j');
+                $activitySeries[] = (float) $reservations
+                    ->filter(fn ($r) => $r->reserved_date->isSameDay($day))
+                    ->count();
             }
         }
 
-        $currentRevenue = (float) $orders->sum('total');
-        $previousRevenue = (float) $prevOrders->sum('total');
-        $revenueChange = $previousRevenue > 0
-            ? round((($currentRevenue - $previousRevenue) / $previousRevenue) * 100, 1)
-            : ($currentRevenue > 0 ? 100.0 : 0.0);
+        $currentCount = $reservations->count();
+        $previousCount = $prevReservations->count();
+        $activityChange = $previousCount > 0
+            ? round((($currentCount - $previousCount) / $previousCount) * 100, 1)
+            : ($currentCount > 0 ? 100.0 : 0.0);
 
-        $channelTotals = Order::query()
-            ->whereBetween('placed_at', [$start, $end])
-            ->selectRaw('channel, count(*) as count')
-            ->groupBy('channel')
-            ->pluck('count', 'channel');
+        $statusTotals = Reservation::query()
+            ->whereBetween('reserved_date', [$start->toDateString(), $end->toDateString()])
+            ->selectRaw('status, count(*) as count')
+            ->groupBy('status')
+            ->pluck('count', 'status');
 
-        $totalOrders = max(1, $channelTotals->sum());
-        $colors = [
-            'Website' => 'var(--gold-600)',
-            'Toast POS' => 'var(--spice-600)',
-            'Phone' => '#6f9b5c',
-            'Third-party' => '#5f5446',
+        $totalStatuses = max(1, $statusTotals->sum());
+        $statusColors = [
+            'Confirmed' => 'var(--gold-600)',
+            'Pending' => 'var(--spice-600)',
+            'Seated' => '#6f9b5c',
+            'Completed' => '#5f5446',
+            'Cancelled' => '#8a4a52',
         ];
 
-        $channelSplit = $channelTotals->isEmpty()
-            ? [['label' => 'No orders yet', 'value' => 100, 'color' => 'var(--line)']]
-            : $channelTotals->map(fn ($count, $label) => [
+        $channelSplit = $statusTotals->isEmpty()
+            ? [['label' => 'No reservations yet', 'value' => 100, 'color' => 'var(--line)']]
+            : $statusTotals->map(fn ($count, $label) => [
                 'label' => $label,
-                'value' => (int) round(($count / $totalOrders) * 100),
-                'color' => $colors[$label] ?? 'var(--gold-600)',
+                'value' => (int) round(($count / $totalStatuses) * 100),
+                'color' => $statusColors[$label] ?? 'var(--gold-600)',
             ])->values()->all();
 
-        $topItems = Order::query()
-            ->with('items')
-            ->whereBetween('placed_at', [$start, $end])
+        $upcoming = Reservation::query()
+            ->where('reserved_date', '>=', now()->toDateString())
+            ->orderBy('reserved_date')
+            ->orderBy('reserved_time')
+            ->limit(5)
             ->get()
-            ->flatMap(fn ($o) => $o->items)
-            ->groupBy('item_name')
-            ->map(fn ($items, $name) => [
-                'name' => $name,
-                'sold' => $items->sum('quantity'),
-                'rev' => (float) $items->sum('line_total'),
+            ->map(fn (Reservation $r) => [
+                'name' => $r->customer_name,
+                'detail' => 'Party of '.$r->party_size.' · '.$r->reserved_date->format('M j').' '.$r->reserved_time,
+                'ref' => $r->reference,
             ])
-            ->sortByDesc('sold')
-            ->take(5)
-            ->values()
             ->all();
 
-        $hourly = array_fill(0, 24, 0);
-        Order::query()->whereBetween('placed_at', [now()->startOfDay(), now()->endOfDay()])->get()
-            ->each(fn ($o) => $hourly[(int) $o->placed_at->format('G')]++);
-
         return [
-            'revenue7' => $revenueSeries,
-            'revenueDays' => $revenueLabels,
+            'revenue7' => $activitySeries,
+            'revenueDays' => $activityLabels,
             'channelSplit' => $channelSplit,
-            'topItems' => $topItems,
-            'hourly' => $hourly,
-            'revenueChange' => $revenueChange,
-            'revenueUp' => $revenueChange >= 0,
+            'topItems' => $upcoming,
+            'revenueChange' => $activityChange,
+            'revenueUp' => $activityChange >= 0,
             'chartTitle' => match ($range) {
-                'today' => 'Revenue by hour',
-                '30' => 'Revenue by day',
-                default => 'Revenue by day',
+                'today' => 'Reservations by hour',
+                '30' => 'Reservations by day',
+                default => 'Reservations by day',
             },
             'chartSubtitle' => match ($range) {
-                'today' => 'Today · all channels',
-                '30' => 'Last 30 days · all channels',
-                default => 'Last 7 days · all channels',
+                'today' => 'Today · table bookings',
+                '30' => 'Last 30 days · table bookings',
+                default => 'Last 7 days · table bookings',
             },
-            'sparks' => [
-                array_map(fn ($v) => max(1, (int) ($v / 500)), $revenueSeries),
-                [3, 5, 2, 4, 6, 3, 5],
-                [2, 4, 3, 5, 4, 3, 2],
-                [4, 3, 5, 2, 4, 3, 5],
-            ],
         ];
     }
 
@@ -197,20 +188,19 @@ class AdminData
     {
         [$start, $end] = self::resolveDashboardRange($range);
 
-        $orders = Order::query()->whereBetween('placed_at', [$start, $end])->get();
-        $revenue = (float) $orders->sum('total');
-        $orderCount = $orders->count();
-        $avgOrder = $orderCount > 0 ? $revenue / $orderCount : 0.0;
-
-        $covers = (int) Reservation::query()
+        $reservations = Reservation::query()
             ->whereBetween('reserved_date', [$start->toDateString(), $end->toDateString()])
-            ->sum('party_size');
+            ->get();
+        $reservationCount = $reservations->count();
+        $covers = (int) $reservations->sum('party_size');
 
-        $rangeLabel = match ($range) {
-            'today' => 'today',
-            '30' => 'last 30 days',
-            default => 'last 7 days',
-        };
+        $cateringCount = CateringInquiry::query()
+            ->whereBetween('created_at', [$start, $end])
+            ->count();
+
+        $messageCount = ContactMessage::query()
+            ->whereBetween('created_at', [$start, $end])
+            ->count();
 
         $periodLabel = match ($range) {
             'today' => 'Today',
@@ -218,14 +208,20 @@ class AdminData
             default => '7d',
         };
 
+        $rangeLabel = match ($range) {
+            'today' => 'today',
+            '30' => 'last 30 days',
+            default => 'last 7 days',
+        };
+
         return [
             'range' => $range,
             'periodLabel' => $periodLabel,
             'cards' => [
-                ["Revenue ({$periodLabel})", '$'.number_format($revenue, $revenue >= 1000 ? 0 : 2), "{$orderCount} orders", 'dollar'],
-                ["Orders ({$periodLabel})", (string) $orderCount, $rangeLabel, 'bag'],
-                ['Covers booked', (string) $covers, 'party size total', 'cal'],
-                ['Avg. order value', '$'.number_format($avgOrder, 2), 'per order', 'trend'],
+                ["Reservations ({$periodLabel})", (string) $reservationCount, $rangeLabel, 'cal'],
+                ['Covers booked', (string) $covers, 'party size total', 'users'],
+                ['Catering inquiries', (string) $cateringCount, $rangeLabel, 'box'],
+                ['Contact messages', (string) $messageCount, $rangeLabel, 'mail'],
             ],
         ];
     }
@@ -332,7 +328,6 @@ class AdminData
     public static function getNavBadges(): array
     {
         return [
-            'orders' => Order::where('status', 'New')->count(),
             'reservations' => Reservation::where('status', 'Pending')->count(),
             'catering' => CateringInquiry::where('status', 'New')->count(),
             'contact' => ContactMessage::where('status', 'Unread')->count(),

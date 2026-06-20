@@ -413,6 +413,20 @@
   color: var(--muted);
 }
 
+#cust-root .nm-foot__credit {
+  margin-top: 8px;
+}
+
+#cust-root .nm-foot__credit a {
+  color: var(--sand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#cust-root .nm-foot__credit a:hover {
+  color: var(--cream);
+}
+
 #cust-root .nm-foot .cust-logo [style*="brand-500"] {
   color: var(--brand-600) !important;
 }

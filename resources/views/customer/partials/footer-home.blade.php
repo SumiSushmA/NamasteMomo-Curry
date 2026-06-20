@@ -36,8 +36,8 @@
 
             <div class="nm-foot__col">
                 <h4>Visit</h4>
-                <p>{{ $site['address'] ?? '13754 Aurora Ave N, Suite D' }}</p>
-                <p>{{ $site['city'] ?? 'Seattle, WA 98133' }}</p>
+                <p>{{ $site['address'] ?? '6211 Evergreen Way' }}</p>
+                <p>{{ $site['city'] ?? 'Everett, WA 98203' }}</p>
                 <a href="tel:{{ preg_replace('/\D/', '', $site['phone'] ?? '') }}" class="nm-foot__phone">{{ $site['phone'] ?? '(206) 397-3211' }}</a>
                 <div class="nm-foot__social">
                     @foreach([['fb', 'facebook_url'], ['ig', 'instagram_url'], ['wa', 'whatsapp_url']] as [$icon, $key])
@@ -53,6 +53,7 @@
 
         <div class="nm-wrap nm-foot__base">
             <p>© {{ date('Y') }} {{ $site['restaurant_name'] ?? 'Namaste MoMo & curry house' }}. All rights reserved.</p>
+            <p class="nm-foot__credit">Developed by: <a href="https://www.linkedin.com/in/sushma-sharma-123943293/" target="_blank" rel="noopener noreferrer">Sushma Sharma</a></p>
         </div>
     </div>
 </footer>
