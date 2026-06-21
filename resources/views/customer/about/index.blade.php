@@ -134,7 +134,7 @@
         <div class="abt-locate__inner">
             <header class="abt-locate__head">
                 <span class="abt-locate__eyebrow">Find us</span>
-                <h2 id="abt-locate-title">Visit us on Aurora Avenue</h2>
+                <h2 id="abt-locate-title">Visit us on Evergreen Way</h2>
             </header>
             <div class="abt-locate__grid">
                 <article class="abt-locate__card">
@@ -150,15 +150,16 @@
                         <x-icon name="clock" :size="22" />
                     </div>
                     <h3>Hours</h3>
-                    <p>{{ $site['hours'] ?? 'Daily · 10:00 AM – 9:30 PM' }}</p>
-                    <p class="abt-locate__note">{{ $site['closed_days'] ?? 'Walk-ins welcome' }}</p>
+                    <p>{{ $site['hours'] ?? 'Tue–Sun · 11:00 AM – 9:00 PM' }}</p>
+                    <p class="abt-locate__note">{{ $site['closed_days'] ?? 'Closed Mondays' }}</p>
                 </article>
                 <article class="abt-locate__card">
                     <div class="abt-locate__icon" aria-hidden="true">
                         <x-icon name="phone" :size="22" />
                     </div>
-                    <h3>Call us</h3>
-                    <p><a href="tel:{{ preg_replace('/\D/', '', $site['phone'] ?? '') }}" class="abt-locate__phone">{{ $site['phone'] ?? '(206) 397-3211' }}</a></p>
+                    <h3>Contact us</h3>
+                    <p><a href="tel:{{ preg_replace('/\D/', '', $site['phone'] ?? '') }}" class="abt-locate__phone">{{ $site['phone'] ?? '(253) 420-5566' }}</a></p>
+                    <p><a href="mailto:{{ $site['email'] ?? 'Namastemomo6211@gmail.com' }}" class="abt-locate__phone">{{ $site['email'] ?? 'Namastemomo6211@gmail.com' }}</a></p>
                     <a href="{{ route('contact') }}" class="abt-locate__link">Contact page →</a>
                 </article>
             </div>

@@ -25,13 +25,13 @@ $date = $reservation->reserved_date->format('l, F j, Y');
         @endif
     </div>
 
-    <p style="font-size:14px;color:#444">{{ $site['address'] ?? '13754 Aurora Ave N, Suite D, Seattle, WA' }}</p>
+    <p style="font-size:14px;color:#444">{{ $site['address'] ?? '6211 Evergreen Way' }}, {{ $site['city'] ?? 'Everett, WA 98203' }}</p>
 
     @if($reservation->notes)
         <p style="font-size:14px;color:#444"><strong>Notes:</strong> {{ $reservation->notes }}</p>
     @endif
 
-    <p style="color:#666;font-size:14px;margin-top:24px">Need to change your reservation? Call {{ $site['phone'] ?? '(206) 397-3211' }}.</p>
+    <p style="color:#666;font-size:14px;margin-top:24px">Need to change your reservation? Call {{ $site['phone'] ?? '(253) 420-5566' }}.</p>
 
     @include('emails.partials.footer', ['recipientEmail' => $recipientEmail ?? $reservation->customer_email ?? null])
 </body>

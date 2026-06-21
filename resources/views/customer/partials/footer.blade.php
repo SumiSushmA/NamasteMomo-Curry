@@ -45,7 +45,8 @@
                         <div style="font-size:14px;color:var(--sand);line-height:1.7">
                             <div>{{ $site['address'] ?? '6211 Evergreen Way' }}</div>
                             <div>{{ $site['city'] ?? 'Everett, WA 98203' }}</div>
-                            <div style="margin-top:8px;color:var(--cream-2)">{{ $site['phone'] ?? '(206) 397-3211' }}</div>
+                            <div style="margin-top:8px;color:var(--cream-2)">{{ $site['phone'] ?? '(253) 420-5566' }}</div>
+                            <div style="margin-top:4px;color:var(--cream-2)"><a href="mailto:{{ $site['email'] ?? 'Namastemomo6211@gmail.com' }}" style="color:inherit;text-decoration:none">{{ $site['email'] ?? 'Namastemomo6211@gmail.com' }}</a></div>
                         </div>
                     </div>
                     <div class="cust-foot-social">

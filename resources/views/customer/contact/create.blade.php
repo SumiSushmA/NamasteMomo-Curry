@@ -6,11 +6,12 @@
 
 @section('content')
 @php
-    $phone = $site['phone'] ?? '(425) 543-3032';
-    $email = $site['email'] ?? 'hello@indiannepalikitchen.com';
+    $phone = $site['phone'] ?? '(253) 420-5566';
+    $email = $site['email'] ?? 'Namastemomo6211@gmail.com';
     $address = $site['address'] ?? '6211 Evergreen Way';
     $city = $site['city'] ?? 'Everett, WA 98203';
-    $hours = $site['hours'] ?? 'Daily · 10:00 AM – 9:30 PM';
+    $hours = $site['hours'] ?? 'Tue–Sun · 11:00 AM – 9:00 PM';
+    $closedDays = $site['closed_days'] ?? 'Closed Mondays';
     $mapsQuery = urlencode(trim($address.', '.$city));
     $mapsLink = 'https://maps.google.com/?q='.$mapsQuery;
     $phoneTel = 'tel:'.preg_replace('/[^\d+]/', '', $phone);
@@ -113,6 +114,12 @@
                             <span>Open</span>
                             <span>{{ $hours }}</span>
                         </div>
+                        @if($closedDays)
+                            <div class="ct-hours__row">
+                                <span>Closed</span>
+                                <span>{{ $closedDays }}</span>
+                            </div>
+                        @endif
                     </div>
                 </div>
 

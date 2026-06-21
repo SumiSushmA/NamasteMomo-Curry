@@ -3,7 +3,6 @@ $tax = round($cartSubtotal * \App\Http\Controllers\Customer\CartController::taxR
 $estTotal = round($cartSubtotal + $tax, 2);
 $toastOrderUrl = $toastPayment['orderUrl'] ?? null;
 $hasMenuItems = collect($cartItems)->contains(fn ($item) => empty($item['catering']));
-$hasCateringOnly = collect($cartItems)->isNotEmpty() && collect($cartItems)->every(fn ($item) => ! empty($item['catering']));
 @endphp
 
 <div id="cart-drawer" aria-hidden="true">
@@ -28,7 +27,7 @@ $hasCateringOnly = collect($cartItems)->isNotEmpty() && collect($cartItems)->eve
             <div style="flex:1;overflow-y:auto;padding:8px 24px">
                 @foreach($cartItems as $item)
                     <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line-soft)">
-                        <x-ph :label="$item['img']" :h="62" :w="62" :r="10" class="cust-cart-item-img" />
+                        <x-ph :label="$item['img'] ?? ($item['name'] ?? 'catering spread')" :h="62" :w="62" :r="10" class="cust-cart-item-img" />
                         <div style="flex:1;min-width:0">
                             <div style="display:flex;justify-content:space-between;gap:8px">
                                 <div style="font-weight:600;font-size:15px">{{ $item['name'] }}</div>
@@ -75,10 +74,6 @@ $hasCateringOnly = collect($cartItems)->isNotEmpty() && collect($cartItems)->eve
                 @if($hasMenuItems && $toastOrderUrl)
                     <a href="{{ $toastOrderUrl }}" target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width:100%;justify-content:center">
                         Checkout on Toast <x-icon name="arrow" :size="18" />
-                    </a>
-                @elseif($hasCateringOnly)
-                    <a href="{{ route('contact') }}" class="btn btn-gold" style="width:100%;justify-content:center">
-                        Request catering quote <x-icon name="arrow" :size="18" />
                     </a>
                 @else
                     <a href="{{ route('checkout') }}" class="btn btn-gold" style="width:100%;justify-content:center">

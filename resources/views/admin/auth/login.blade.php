@@ -78,7 +78,8 @@
         }
 
         .adm-login-field input[type="email"],
-        .adm-login-field input[type="password"] {
+        .adm-login-field input[type="password"],
+        .adm-login-pass-wrap input {
             width: 100%;
             padding: 12px 14px;
             background: var(--ink-700);
@@ -86,8 +87,24 @@
             border-radius: var(--radius-s);
             color: var(--cream);
             font-family: var(--sans);
-            font-size: 15px;
+            font-size: 16px;
             transition: border-color .15s, box-shadow .15s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .adm-login-field input:-webkit-autofill,
+        .adm-login-field input:-webkit-autofill:hover,
+        .adm-login-field input:-webkit-autofill:focus,
+        .adm-login-pass-wrap input:-webkit-autofill,
+        .adm-login-pass-wrap input:-webkit-autofill:hover,
+        .adm-login-pass-wrap input:-webkit-autofill:focus {
+            -webkit-text-fill-color: var(--cream);
+            caret-color: var(--cream);
+            border: 1px solid var(--line);
+            -webkit-box-shadow: 0 0 0 1000px var(--ink-700) inset;
+            box-shadow: 0 0 0 1000px var(--ink-700) inset;
+            transition: background-color 9999s ease-out;
         }
 
         .adm-login-pass-wrap {
@@ -96,7 +113,6 @@
         }
 
         .adm-login-pass-wrap input {
-            width: 100%;
             padding-right: 48px !important;
         }
 
@@ -177,6 +193,68 @@
             margin-top: 24px;
             font-size: 13px;
             color: var(--faint);
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+                padding-top: max(20px, env(safe-area-inset-top));
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+                align-content: start;
+            }
+
+            .adm-login-wrap {
+                max-width: 100%;
+            }
+
+            .adm-login-brand {
+                margin-bottom: 22px;
+            }
+
+            .adm-login-brand .cust-logo {
+                flex-direction: column !important;
+                gap: 10px !important;
+                text-align: center;
+            }
+
+            .adm-login-brand .cust-logo img {
+                height: 48px !important;
+                width: auto !important;
+            }
+
+            .adm-login-brand .cust-logo div[style*="font-size"] {
+                font-size: 16px !important;
+                line-height: 1.25 !important;
+                max-width: 260px;
+                margin: 0 auto;
+            }
+
+            .adm-login-brand p {
+                letter-spacing: .28em;
+                margin-top: 4px;
+            }
+
+            .adm-login-card {
+                padding: 24px 18px;
+            }
+
+            .adm-login-card h2 {
+                font-size: 20px;
+            }
+
+            .adm-login-card .subtitle {
+                font-size: 13px;
+                margin-bottom: 22px;
+            }
+
+            .adm-login-submit {
+                min-height: 48px;
+            }
+
+            .adm-login-footer {
+                font-size: 12px;
+                margin-top: 18px;
+            }
         }
     </style>
 </head>

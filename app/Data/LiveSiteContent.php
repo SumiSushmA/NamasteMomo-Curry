@@ -14,10 +14,10 @@ class LiveSiteContent
             'restaurant_name' => 'Namaste MoMo & curry house',
             'address' => '6211 Evergreen Way',
             'city' => 'Everett, WA 98203',
-            'phone' => '(425) 543-3032',
-            'email' => 'hello@indiannepalikitchen.com',
-            'hours' => 'Daily · 10:00 AM – 9:30 PM',
-            'closed_days' => '',
+            'phone' => '(253) 420-5566',
+            'email' => 'Namastemomo6211@gmail.com',
+            'hours' => 'Tue–Sun · 11:00 AM – 9:00 PM',
+            'closed_days' => 'Closed Mondays',
             'tax_rate' => '0.1025',
             'delivery_fee' => '6.98',
             'free_delivery_min' => '999',
@@ -30,7 +30,7 @@ class LiveSiteContent
             'toast_connected' => 'true',
             'instagram_url' => 'https://www.instagram.com/indiannepalikitchen',
             'facebook_url' => 'https://www.facebook.com/indiannepalikitchen',
-            'whatsapp_url' => 'https://wa.me/14255433032',
+            'whatsapp_url' => 'https://wa.me/12534205566',
             'map_embed_url' => 'https://maps.google.com/maps?q=6211+Evergreen+Way,+Everett,+WA+98203&hl=en&z=16&output=embed',
         ];
     }
@@ -41,7 +41,7 @@ class LiveSiteContent
             'Hero headline' => 'Namaste — welcome to MoMo & curry house.',
             'Hero subtext' => 'Your neighborhood spot for juicy momo, sizzling tandoori, and comforting Indian & Nepali curries. Order for pickup or delivery, or join us for a relaxed meal on Aurora Avenue.',
             'Footer tagline' => 'Hand-pleated momo, charcoal tandoor, and slow-simmered curries — dine in, pick up, or order delivery from Namaste MoMo & curry house.',
-            'Hours banner' => 'Daily · 10:00 AM – 9:30 PM',
+            'Hours banner' => 'Tue–Sun · 11:00 AM – 9:00 PM',
             'About story' => 'Our story',
             'Home story title' => 'Momo first. Curry always. Welcome home.',
             'Home story text' => 'At Namaste MoMo & curry house, every meal starts with care — hand-pleated momo, curries simmered to order, and naan pulled warm from the tandoor. We bring together the flavors of the Himalayan hills and the Indian subcontinent in a cozy Aurora Avenue dining room built for families, friends, and everyday cravings.',
@@ -80,8 +80,8 @@ class LiveSiteContent
             'stats' => [
                 ['4.87', 'average rating online'],
                 ['14', 'menu categories'],
-                ['10–9:30', 'open daily'],
-                ['13754', 'Aurora Ave N, Seattle'],
+                ['11–9', 'Tue–Sun'],
+                ['6211', 'Evergreen Way, Everett'],
             ],
             'team' => [
                 ['name' => 'Our kitchen team', 'role' => 'Chefs & tandoor', 'tag' => 'Kitchen'],

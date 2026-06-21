@@ -145,21 +145,30 @@
   grid-template-columns: 260px 1fr;
   gap: 24px;
   align-items: start;
+  width: 100%;
+  min-width: 0;
 }
 
 .acct-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.acct-user-card {
   padding: 22px 18px;
-  position: sticky;
-  top: 100px;
 }
 
 .acct-user {
   display: flex;
   gap: 12px;
   align-items: center;
-  padding-bottom: 18px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid var(--line);
+}
+
+.acct-user-meta {
+  min-width: 0;
+  flex: 1;
 }
 
 .acct-avatar {
@@ -177,6 +186,9 @@
 .acct-user strong {
   display: block;
   font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .acct-user span {
@@ -184,7 +196,9 @@
   font-size: 13px;
   color: var(--muted);
   margin-top: 2px;
-  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .acct-tabs {
@@ -203,7 +217,11 @@
   text-decoration: none;
   font-size: 14.5px;
   font-weight: 600;
-  transition: background .15s, color .15s;
+  transition: background .15s, color .15s, border-color .15s;
+}
+
+.acct-tab span {
+  line-height: 1.2;
 }
 
 .acct-tab:hover,
@@ -216,6 +234,41 @@
   margin-top: 18px;
   padding-top: 18px;
   border-top: 1px solid var(--line);
+}
+
+.acct-logout .btn {
+  width: 100%;
+}
+
+@media (min-width: 961px) {
+  .acct-sidebar {
+    background: var(--ink-700);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px 18px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .acct-user-card.cust-card {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .acct-user {
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .acct-logout {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
 }
 
 .acct-panel {
@@ -497,17 +550,112 @@
 }
 
 @media (max-width: 960px) {
+  #cust-root:has(.acct-shell) main {
+    overflow-x: clip;
+  }
+
   .acct-shell {
     grid-template-columns: 1fr;
+    padding: 0 20px 80px;
+    gap: 16px;
+    overflow-x: clip;
   }
 
   .acct-sidebar {
-    position: static;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .acct-user-card {
+    padding: 14px 16px;
+  }
+
+  .acct-user-card .acct-user {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
   }
 
   .acct-tabs {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    padding: 2px 0 6px;
+  }
+
+  .acct-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .acct-tab {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    white-space: nowrap;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--cream-2);
+    font-size: 13px;
+  }
+
+  .acct-tab svg {
+    flex-shrink: 0;
+  }
+
+  .acct-tab:hover {
+    background: #fff;
+    border-color: var(--brand-700);
+    color: var(--brand-600);
+  }
+
+  .acct-tab.active {
+    background: var(--brand-600);
+    border-color: var(--brand-600);
+    color: #fff;
+  }
+
+  .acct-tab.active svg {
+    color: #fff;
+    stroke: #fff;
+  }
+
+  .acct-logout {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .acct-logout .btn {
+    width: 100%;
+    min-height: 40px;
+    justify-content: center;
+  }
+
+  .acct-main {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .acct-panel {
+    padding: 20px 18px;
+  }
+
+  .acct-panel-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .acct-panel-head h2 {
+    font-size: 22px;
   }
 
   .acct-order-grid {
@@ -516,6 +664,23 @@
 }
 
 @media (max-width: 640px) {
+  .acct-page-head {
+    padding-top: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: clip;
+  }
+
+  .acct-page-head h1 {
+    font-size: clamp(28px, 7.5vw, 38px) !important;
+  }
+
+  .acct-page-head p {
+    font-size: 15px;
+    line-height: 1.55;
+    margin-top: 10px;
+  }
+
   .acct-row {
     flex-direction: column;
     align-items: flex-start;
@@ -525,9 +690,5 @@
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-  }
-
-  .acct-tabs {
-    grid-template-columns: 1fr;
   }
 }

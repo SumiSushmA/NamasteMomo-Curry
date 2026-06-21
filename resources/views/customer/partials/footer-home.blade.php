@@ -38,7 +38,8 @@
                 <h4>Visit</h4>
                 <p>{{ $site['address'] ?? '6211 Evergreen Way' }}</p>
                 <p>{{ $site['city'] ?? 'Everett, WA 98203' }}</p>
-                <a href="tel:{{ preg_replace('/\D/', '', $site['phone'] ?? '') }}" class="nm-foot__phone">{{ $site['phone'] ?? '(206) 397-3211' }}</a>
+                <a href="tel:{{ preg_replace('/\D/', '', $site['phone'] ?? '') }}" class="nm-foot__phone">{{ $site['phone'] ?? '(253) 420-5566' }}</a>
+                <a href="mailto:{{ $site['email'] ?? 'Namastemomo6211@gmail.com' }}" class="nm-foot__phone">{{ $site['email'] ?? 'Namastemomo6211@gmail.com' }}</a>
                 <div class="nm-foot__social">
                     @foreach([['fb', 'facebook_url'], ['ig', 'instagram_url'], ['wa', 'whatsapp_url']] as [$icon, $key])
                         @if(!empty($site[$key]))

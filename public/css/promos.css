@@ -497,32 +497,54 @@
   .offers-newsletter {
     flex-direction: column;
     align-items: stretch;
+    gap: 18px;
+    margin-top: 28px;
+    padding: 22px 18px;
   }
 
+  .offers-newsletter__copy,
   .offers-newsletter__form {
+    flex: none;
+    width: 100%;
     max-width: none;
+  }
+
+  .offers-newsletter__copy h2 {
+    font-size: 24px;
+  }
+
+  .offers-newsletter__copy p {
+    margin-top: 6px;
+    font-size: 13px;
   }
 
   .offers-newsletter__field {
     flex-direction: column;
     align-items: stretch;
-    padding: 12px;
-    border-radius: 16px;
     gap: 10px;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
 
   #cust-root[data-page="promos"] .offers-newsletter__input {
-    padding: 10px 12px;
-    text-align: center;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    border-radius: 999px;
+    background: #fff !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
 
   .offers-btn--subscribe {
     width: 100%;
+    padding: 12px 22px;
   }
 }
 
 @media (max-width: 480px) {
-  .offers-newsletter__field {
-    padding: 10px;
+  .offers-newsletter {
+    padding: 20px 16px;
   }
 }

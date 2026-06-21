@@ -8,12 +8,12 @@ $newLeads = count(array_filter($catering, fn($c) => $c['status'] === 'New'));
 @endphp
 
 @section('content')
-<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:26px;">
+<div class="adm-page-head adm-cat-head">
     <div>
-        <h1 style="font-size:30px;font-weight:600;">Catering inquiries</h1>
-        <p style="color:var(--muted);font-size:14.5px;margin-top:6px;">{{ $newLeads }} new leads · ${{ number_format($pipelineValue) }} in pipeline</p>
+        <h1 class="adm-cat-title">Catering inquiries</h1>
+        <p class="adm-cat-sub">{{ $newLeads }} new leads · ${{ number_format($pipelineValue) }} in pipeline</p>
     </div>
-    <div data-adm-segments data-adm-target="catering" style="display:inline-flex;background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:3px;">
+    <div data-adm-segments data-adm-target="catering" class="adm-res-segments adm-cat-segments">
         <button type="button" data-adm-segment="board" style="border:none;background:var(--ink-600);color:var(--cream);padding:7px 14px;border-radius:7px;font-weight:600;font-size:13px;font-family:var(--sans);cursor:pointer;">Board</button>
         <button type="button" data-adm-segment="list" style="border:none;background:transparent;color:var(--muted);padding:7px 14px;border-radius:7px;font-weight:600;font-size:13px;font-family:var(--sans);cursor:pointer;">List</button>
     </div>
@@ -106,47 +106,47 @@ $newLeads = count(array_filter($catering, fn($c) => $c['status'] === 'New'));
     </div>
 </div>
 
-<div style="margin-top:32px;">
-    <h2 style="font-size:22px;font-weight:600;margin-bottom:18px;">Catering packages</h2>
+<div class="adm-cat-packages">
+    <h2 class="adm-cat-packages__title">Catering packages</h2>
 
-    <div class="adm-card" style="padding:22px;margin-bottom:18px;">
-        <h3 style="font-size:17px;font-weight:600;margin-bottom:14px;">Add package</h3>
-        <form action="{{ route('admin.catering.packages.store') }}" method="POST" style="display:grid;gap:12px;">
+    <div class="adm-card adm-cat-pkg-add">
+        <h3 class="adm-cat-pkg-add__title">Add package</h3>
+        <form action="{{ route('admin.catering.packages.store') }}" method="POST" class="adm-cat-pkg-form">
             @csrf
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
-                <input name="name" placeholder="Package name" required style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
-                <input name="guest_range" placeholder="Guest range (e.g. 20–40)" required style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
-                <input name="price_label" placeholder="Price label (e.g. From $18/person)" required style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
+            <div class="adm-cat-pkg-row-3">
+                <input name="name" placeholder="Package name" required class="adm-inp">
+                <input name="guest_range" placeholder="Guest range (e.g. 20–40)" required class="adm-inp">
+                <input name="price_label" placeholder="Price label (e.g. From $18/person)" required class="adm-inp">
             </div>
-            <textarea name="items" placeholder="Items (one per line)" required rows="3" style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);resize:vertical;"></textarea>
-            <div style="display:flex;gap:12px;align-items:center;">
-                <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--cream-2);">
+            <textarea name="items" placeholder="Items (one per line)" required rows="3" class="adm-inp"></textarea>
+            <div class="adm-cat-pkg-actions">
+                <label class="adm-cat-pkg-check">
                     <input type="checkbox" name="is_popular" value="1"> Popular
                 </label>
-                <button type="submit" class="btn btn-gold btn-sm" style="margin-left:auto;">Add package</button>
+                <button type="submit" class="btn btn-gold btn-sm">Add package</button>
             </div>
         </form>
     </div>
 
-    <div class="adm-perm-grid">
+    <div class="adm-perm-grid adm-cat-pkg-grid">
         @foreach($packages as $pkg)
-        <div class="adm-card" style="padding:22px;">
-            <form action="{{ route('admin.catering.packages.update', $pkg) }}" method="POST" style="display:grid;gap:10px;">
+        <div class="adm-card adm-cat-pkg-card">
+            <form action="{{ route('admin.catering.packages.update', $pkg) }}" method="POST" class="adm-cat-pkg-form">
                 @csrf @method('PUT')
-                <input name="name" value="{{ $pkg->name }}" required style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--cream);font-weight:600;font-family:var(--sans);">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                    <input name="guest_range" value="{{ $pkg->guest_range }}" required style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--cream);font-size:13px;font-family:var(--sans);">
-                    <input name="price_label" value="{{ $pkg->price_label }}" required style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--cream);font-size:13px;font-family:var(--sans);">
+                <input name="name" value="{{ $pkg->name }}" required class="adm-inp" style="font-weight:600;">
+                <div class="adm-cat-pkg-row-2">
+                    <input name="guest_range" value="{{ $pkg->guest_range }}" required class="adm-inp">
+                    <input name="price_label" value="{{ $pkg->price_label }}" required class="adm-inp">
                 </div>
-                <textarea name="items" rows="4" required style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--cream);font-size:13px;font-family:var(--sans);resize:vertical;">{{ implode("\n", $pkg->items ?? []) }}</textarea>
-                <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--cream-2);">
+                <textarea name="items" rows="4" required class="adm-inp">{{ implode("\n", $pkg->items ?? []) }}</textarea>
+                <label class="adm-cat-pkg-check">
                     <input type="checkbox" name="is_popular" value="1" @checked($pkg->is_popular)> Popular
                 </label>
-                <button type="submit" class="btn btn-ghost btn-sm">Save</button>
+                <button type="submit" class="btn btn-ghost btn-sm adm-cat-pkg-save">Save</button>
             </form>
-            <form action="{{ route('admin.catering.packages.destroy', $pkg) }}" method="POST" style="margin-top:8px;" data-confirm="Delete this package?">
+            <form action="{{ route('admin.catering.packages.destroy', $pkg) }}" method="POST" class="adm-cat-pkg-delete" data-confirm="Delete this package?">
                 @csrf @method('DELETE')
-                <button type="submit" style="width:34px;height:34px;border-radius:9px;background:transparent;border:1px solid var(--spice-600);color:var(--spice-400);cursor:pointer;display:grid;place-items:center;" aria-label="Delete package"><x-icon name="trash" :size="16"/></button>
+                <button type="submit" class="adm-cat-pkg-delete-btn" aria-label="Delete package"><x-icon name="trash" :size="16"/></button>
             </form>
         </div>
         @endforeach

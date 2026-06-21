@@ -7,15 +7,15 @@
     <p style="color:var(--sand);font-size:17px;line-height:1.65;margin-top:18px">{{ \App\Support\SiteContent::text('Gallery subtitle', '') }}</p>
 </div>
 
-<div style="max-width:1200px;margin:0 auto;padding:0 32px 110px">
-    <div style="display:flex;justify-content:center;gap:8px;margin:40px 0 36px;flex-wrap:wrap">
+<div class="cust-gallery-page">
+    <div class="cust-gallery-tabs">
         <a href="{{ route('gallery') }}" class="cust-tab {{ $tab === 'all' ? 'active' : '' }}">All</a>
         @foreach($cats as $c)
             <a href="{{ route('gallery', ['tab' => $c['id']]) }}" class="cust-tab {{ $tab === $c['id'] ? 'active' : '' }}">{{ $c['name'] }}</a>
         @endforeach
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:230px;gap:14px;grid-auto-flow:dense">
+    <div class="cust-gallery-grid">
         @foreach($shown as $i => $g)
             <button type="button" class="gallery-item cust-gallery-tile-btn" data-label="{{ $g['label'] }}" data-url="{{ $g['url'] }}" style="grid-column:{{ ($spans[$i % count($spans)] ?? 1) === 2 ? 'span 2' : 'auto' }}">
                 <img src="{{ $g['url'] }}" alt="{{ $g['label'] }}" loading="lazy">

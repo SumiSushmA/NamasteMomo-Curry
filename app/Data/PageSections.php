@@ -20,7 +20,7 @@ class PageSections
                 ['section' => 'Home footer headline', 'type' => 'Text', 'label' => 'Footer headline', 'default' => "Craving momo tonight? We've got you."],
                 ['section' => 'Delivery blurb', 'type' => 'Textarea', 'label' => 'Delivery & pickup blurb', 'default' => 'Order from Namaste MoMo & curry house for pickup or delivery. Most orders are ready in 30–60 minutes within our local delivery area.'],
                 ['section' => 'Catering blurb', 'type' => 'Textarea', 'label' => 'Catering blurb', 'default' => 'From office lunches to birthdays and celebrations — Namaste MoMo & curry house caters groups of 20 and up with momo trays, curries, biryani, and naan.'],
-                ['section' => 'Hours banner', 'type' => 'Text', 'label' => 'Hours banner (optional)', 'default' => 'Daily · 10:00 AM – 9:30 PM'],
+                ['section' => 'Hours banner', 'type' => 'Text', 'label' => 'Hours banner (optional)', 'default' => 'Tue–Sun · 11:00 AM – 9:00 PM'],
             ],
             'Homepage' => [
                 ['section' => 'Hero headline', 'type' => 'Text', 'label' => 'Journey section body', 'default' => 'Namaste — welcome to MoMo & curry house.'],

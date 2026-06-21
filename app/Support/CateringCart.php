@@ -112,6 +112,7 @@ class CateringCart
                 'price' => $unitPrice,
                 'qty' => $guests,
                 'desc' => $summary ?: 'Custom catering selections',
+                'img' => 'catering spread',
                 'catering' => true,
                 'catering_type' => 'per_person',
                 'selections' => $selections,
@@ -130,6 +131,7 @@ class CateringCart
                 'price' => $tray['price'],
                 'qty' => (int) $qty,
                 'desc' => $tray['serves'],
+                'img' => self::trayImageLabel($tray),
                 'catering' => true,
                 'catering_type' => 'tray',
             ];
@@ -146,5 +148,22 @@ class CateringCart
     public static function isCateringLine(string $id): bool
     {
         return $id === self::PER_PERSON_ID || str_starts_with($id, 'catering-tray:');
+    }
+
+    /** @param array{slug: string, name: string} $tray */
+    private static function trayImageLabel(array $tray): string
+    {
+        $slug = strtolower($tray['slug']);
+
+        return match (true) {
+            str_contains($slug, 'momo') => 'momo',
+            str_contains($slug, 'biryani') => 'biryani',
+            str_contains($slug, 'tandoori') => 'tandoori',
+            str_contains($slug, 'naan') => 'naan',
+            str_contains($slug, 'gulab') => 'gulab jamun',
+            str_contains($slug, 'samosa') => 'samosa',
+            str_contains($slug, 'curry') || str_contains($slug, 'masala') || str_contains($slug, 'goat') || str_contains($slug, 'entree') => 'curry',
+            default => 'catering spread',
+        };
     }
 }

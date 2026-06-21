@@ -34,7 +34,7 @@ $restaurant = $site['restaurant_name'] ?? 'Namaste MoMo & curry house';
     </div>
 
     <p style="margin:0 0 12px">Enter this code at checkout on our website or show it when you visit us.</p>
-    <p style="color:#666;font-size:14px;margin:0">Never expires · Questions? Call {{ $site['phone'] ?? '(206) 397-3211' }}</p>
+    <p style="color:#666;font-size:14px;margin:0">Never expires · Questions? Call {{ $site['phone'] ?? '(253) 420-5566' }}</p>
 
     @include('emails.partials.footer', ['recipientEmail' => $recipientEmail ?? null])
 </body>

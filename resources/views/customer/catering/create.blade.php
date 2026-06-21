@@ -208,11 +208,7 @@
             </div>
 
             <div class="cater-trays-cta">
-                @if($toastOrderUrl = \App\Services\Toast\ToastConfiguration::onlineOrderUrl())
-                    <a href="{{ route('contact') }}" class="btn btn-gold">Request catering quote <x-icon name="arrow" :size="17" /></a>
-                @else
-                    <a href="{{ route('checkout') }}" class="btn btn-gold">Continue to checkout <x-icon name="arrow" :size="17" /></a>
-                @endif
+                <a href="{{ route('checkout') }}" class="btn btn-gold">Checkout <x-icon name="arrow" :size="17" /></a>
             </div>
         </section>
     @endif

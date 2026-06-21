@@ -118,7 +118,7 @@ $revUp = $analytics['revenueUp'];
                     <x-icon name="cal" :size="18"/>
                 </div>
                 <div style="flex:1;min-width:0;">
-                    <div style="font-weight:600;font-size:14.5px;">{{ $r['id'] }} · {{ $r['customer'] }}</div>
+                    <div style="font-weight:600;font-size:14.5px;">{{ $r['id'] }} · {{ $r['name'] ?? $r['customer'] ?? 'Guest' }}</div>
                     <div style="font-size:13px;color:var(--muted);">Party of {{ $r['party'] }} · {{ $r['date'] }} {{ $r['time'] }}</div>
                 </div>
                 <div style="text-align:right;">

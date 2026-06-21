@@ -5,36 +5,37 @@ $total = $galleryCats->sum(fn($c) => $c->images->count());
 @endphp
 
 @section('content')
-<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:26px;">
+<div class="adm-page-head adm-gallery-head">
     <div>
-        <h1 style="font-size:30px;font-weight:600;">Gallery</h1>
-        <p style="color:var(--muted);font-size:14.5px;margin-top:6px;">{{ $total }} images live · {{ $galleryCats->count() }} categories</p>
+        <h1 class="adm-gallery-title">Gallery</h1>
+        <p class="adm-gallery-sub">{{ $total }} images live · {{ $galleryCats->count() }} categories</p>
     </div>
 </div>
 
-<div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
+<div class="adm-gallery-cats">
     @foreach($galleryCats as $c)
-    <a href="{{ route('admin.gallery.index', ['category' => $c->slug]) }}" style="text-decoration:none;background:{{ $activeCategory && $c->id === $activeCategory->id ? 'var(--gold-600)' : 'var(--ink-700)' }};color:{{ $activeCategory && $c->id === $activeCategory->id ? '#211405' : 'var(--cream-2)' }};border:1px solid {{ $activeCategory && $c->id === $activeCategory->id ? 'var(--gold-600)' : 'var(--line)' }};border-radius:999px;padding:9px 16px;cursor:pointer;font-size:13.5px;font-weight:600;font-family:var(--sans);display:flex;gap:8px;align-items:center;">
-        {{ $c->name }} <span style="font-size:11px;opacity:.7;">{{ $c->images->count() }}</span>
+    <a href="{{ route('admin.gallery.index', ['category' => $c->slug]) }}" class="adm-gallery-cat{{ $activeCategory && $c->id === $activeCategory->id ? ' adm-gallery-cat--active' : '' }}">
+        {{ $c->name }} <span class="adm-gallery-cat__count">{{ $c->images->count() }}</span>
     </a>
     @endforeach
 </div>
 
 @if($activeCategory)
-<div class="adm-card" style="padding:22px;margin-bottom:20px;">
-    <h3 style="font-size:17px;font-weight:600;margin-bottom:14px;">Upload to {{ $activeCategory->name }}</h3>
-    <form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data" style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;">
+<div class="adm-card adm-gallery-upload">
+    <h3 class="adm-gallery-upload__title">Upload to {{ $activeCategory->name }}</h3>
+    <form action="{{ route('admin.gallery.store') }}" method="POST" enctype="multipart/form-data" class="adm-gallery-upload-form">
         @csrf
         <input type="hidden" name="gallery_category_id" value="{{ $activeCategory->id }}">
-        <label style="display:flex;flex-direction:column;gap:6px;flex:1;min-width:180px;">
-            <span style="font-size:13px;color:var(--sand);font-weight:600;">Caption</span>
+        <label class="adm-gallery-upload__caption">
+            <span class="adm-gallery-upload__label">Caption</span>
             <input name="caption" required placeholder="Image caption" style="background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--cream);font-family:var(--sans);">
         </label>
-        <label style="display:flex;flex-direction:column;gap:6px;">
-            <span style="font-size:13px;color:var(--sand);font-weight:600;">Image file</span>
-            <input name="image" type="file" accept="image/*" required style="color:var(--sand);font-size:14px;">
-        </label>
-        <button type="submit" class="btn btn-gold btn-sm"><x-icon name="plus" :size="16"/> Upload</button>
+        <div class="adm-file-field adm-gallery-upload__file">
+            <span class="adm-file-field__title">Image file</span>
+            <input name="image" type="file" accept="image/*" required>
+            <span data-adm-file-name style="font-size:12px;color:var(--muted);">No file chosen</span>
+        </div>
+        <button type="submit" class="btn btn-gold btn-sm adm-gallery-upload__submit"><x-icon name="plus" :size="16"/> Upload</button>
     </form>
 </div>
 

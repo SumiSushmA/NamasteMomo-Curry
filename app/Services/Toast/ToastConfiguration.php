@@ -2,7 +2,6 @@
 
 namespace App\Services\Toast;
 
-use App\Support\CateringCart;
 use Illuminate\Http\RedirectResponse;
 
 class ToastConfiguration
@@ -47,22 +46,16 @@ class ToastConfiguration
     }
 
     /**
-     * Send guests to Toast hosted ordering, catering contact, or the built-in checkout.
+     * Send guests to Toast hosted ordering or the built-in checkout.
      */
     public static function resolveCheckoutRedirect(): RedirectResponse
     {
-        $menuCart = session('cart', []);
-        $hasMenuItems = $menuCart !== [];
-        $hasCatering = CateringCart::itemCount() > 0;
+        $hasMenuItems = session('cart', []) !== [];
 
         if ($url = self::onlineOrderUrl()) {
-            if ($hasMenuItems || ! $hasCatering) {
+            if ($hasMenuItems) {
                 return redirect()->away($url);
             }
-
-            return redirect()
-                ->route('contact')
-                ->with('info', 'For catering orders, share your event details and our team will confirm your menu and send a quote.');
         }
 
         return redirect()->route('checkout');

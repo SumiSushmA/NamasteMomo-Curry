@@ -25,41 +25,41 @@
     </div>
     <div style="height:40px"></div>
 
-    <form action="{{ route('reserve.store') }}" method="POST" style="max-width:1080px;margin:0 auto;padding:0 32px 110px">
+    <form action="{{ route('reserve.store') }}" method="POST" class="cust-reserve-form">
         @csrf
         <div class="cust-reserve-grid">
             <div class="cust-card">
-                <div style="margin-bottom:24px">
-                    <div style="font-size:13px;color:var(--sand);font-weight:600;margin-bottom:12px">Party size</div>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <div class="cust-reserve-block">
+                    <div class="cust-reserve-label">Party size</div>
+                    <div class="cust-reserve-party">
                         @foreach([1,2,3,4,5,6,7,8] as $n)
-                            <label class="cust-pick" style="min-width:48px;width:48px;height:48px;border-radius:12px;font-weight:600;font-size:15px;display:grid;place-items:center;color:var(--cream)">
+                            <label class="cust-pick cust-reserve-pick cust-reserve-pick--party">
                                 <input type="radio" name="party" value="{{ $n }}" class="cust-sr-input" {{ (int) old('party', request('party', 2)) === $n ? 'checked' : '' }}>{{ $n }}
                             </label>
                         @endforeach
-                        <label class="cust-pick" style="padding:0 16px;height:48px;border-radius:12px;font-weight:600;display:grid;place-items:center">
+                        <label class="cust-pick cust-reserve-pick cust-reserve-pick--party cust-reserve-pick--wide">
                             <input type="radio" name="party" value="9" class="cust-sr-input"> 9+
                         </label>
                     </div>
                 </div>
-                <div style="margin-bottom:24px">
-                    <div style="font-size:13px;color:var(--sand);font-weight:600;margin-bottom:12px">Date</div>
-                    <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px">
+                <div class="cust-reserve-block">
+                    <div class="cust-reserve-label">Date</div>
+                    <div class="cust-reserve-dates">
                         @foreach($dates as $d)
-                            <label class="cust-pick" style="flex-shrink:0;width:64px;padding:12px 0;border-radius:12px;text-align:center">
+                            <label class="cust-pick cust-reserve-pick cust-reserve-pick--date">
                                 <input type="radio" name="date" value="{{ $d['value'] }}" class="cust-sr-input" {{ old('date') === $d['value'] ? 'checked' : '' }}>
-                                <div style="font-size:11px;opacity:.8;text-transform:uppercase;letter-spacing:.06em">{{ $d['weekday'] }}</div>
-                                <div style="font-size:22px;font-family:var(--serif);font-weight:600;line-height:1.1">{{ $d['day'] }}</div>
-                                <div style="font-size:11px;opacity:.7">{{ $d['month'] }}</div>
+                                <div class="cust-reserve-date-day">{{ $d['weekday'] }}</div>
+                                <div class="cust-reserve-date-num">{{ $d['day'] }}</div>
+                                <div class="cust-reserve-date-month">{{ $d['month'] }}</div>
                             </label>
                         @endforeach
                     </div>
                 </div>
-                <div>
-                    <div style="font-size:13px;color:var(--sand);font-weight:600;margin-bottom:12px">Time</div>
-                    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px">
+                <div class="cust-reserve-block cust-reserve-block--last">
+                    <div class="cust-reserve-label">Time</div>
+                    <div class="cust-reserve-times">
                         @foreach($times as $t)
-                            <label class="cust-pick" style="padding:11px 0;border-radius:12px;font-weight:600;font-size:15px;text-align:center">
+                            <label class="cust-pick cust-reserve-pick cust-reserve-pick--time">
                                 <input type="radio" name="time" value="{{ $t }}" class="cust-sr-input" {{ old('time') === $t ? 'checked' : '' }}>{{ $t }}
                             </label>
                         @endforeach
@@ -71,7 +71,7 @@
                 <p style="color:var(--muted);font-size:14;margin-bottom:20px">We'll hold your table for 15 minutes.</p>
                 <div style="display:grid;gap:14px">
                     <label class="cust-field"><span>Full name</span><input class="cust-inp" name="name" placeholder="Asha Gurung" required value="{{ $prefill['name'] ?? old('name') }}"></label>
-                    <label class="cust-field"><span>Phone</span><input class="cust-inp" name="phone" type="tel" placeholder="{{ $site['phone'] ?? '(206) 397-3211' }}" required value="{{ $prefill['phone'] ?? old('phone') }}"></label>
+                    <label class="cust-field"><span>Phone</span><input class="cust-inp" name="phone" type="tel" placeholder="{{ $site['phone'] ?? '(253) 420-5566' }}" required value="{{ $prefill['phone'] ?? old('phone') }}"></label>
                     <label class="cust-field"><span>Email</span><input class="cust-inp" name="email" type="email" placeholder="you@email.com" required value="{{ $prefill['email'] ?? old('email') }}"></label>
                     <label class="cust-field"><span>Occasion (optional)</span>
                         <select class="cust-inp" name="occasion">

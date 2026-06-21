@@ -61,7 +61,7 @@ $mode = ucfirst($order->fulfillment_type);
         <p style="font-size:14px;color:#444"><strong>Notes:</strong> {{ $order->delivery_notes }}</p>
     @endif
 
-    <p style="color:#666;font-size:14px;margin-top:24px">Questions? Call {{ $site['phone'] ?? '(206) 397-3211' }} or reply to this email.</p>
+    <p style="color:#666;font-size:14px;margin-top:24px">Questions? Call {{ $site['phone'] ?? '(253) 420-5566' }} or reply to this email.</p>
 
     @include('emails.partials.footer', ['recipientEmail' => $recipientEmail ?? $order->customer_email ?? null])
 </body>

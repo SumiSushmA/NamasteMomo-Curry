@@ -8,7 +8,14 @@ $navLinks = [
     ['route' => 'giftcards', 'label' => 'Gift Cards'],
     ['route' => 'contact', 'label' => 'Contact'],
 ];
-$mobileLinks = array_merge([['route' => 'home', 'label' => 'Home'], ['route' => 'menu', 'label' => 'Menu']], $navLinks, [['route' => 'promos', 'label' => 'Offers'], ['route' => 'reserve', 'label' => 'Reserve'], ['route' => 'account.index', 'label' => 'My Account']]);
+$mobileLinks = array_merge(
+    [['route' => 'home', 'label' => 'Home']],
+    $navLinks,
+    [
+        ['route' => 'reserve', 'label' => 'Reserve'],
+        ['route' => 'account.index', 'label' => 'My Account'],
+    ]
+);
 @endphp
 
 <header id="cust-header" class="solid">

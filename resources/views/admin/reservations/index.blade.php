@@ -4,21 +4,21 @@
 $statusTone = ['Confirmed' => 'green', 'Seated' => 'gold', 'Pending' => 'blue', 'Cancelled' => 'red', 'Completed' => 'neutral'];
 $pending = count(array_filter($reservations, fn($r) => $r['status'] === 'Pending'));
 $confirmed = count(array_filter($reservations, fn($r) => $r['status'] === 'Confirmed'));
-$dow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+$dow = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 @endphp
 
 @section('content')
-<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:26px;">
+<div class="adm-page-head adm-res-head">
     <div>
-        <h1 style="font-size:30px;font-weight:600;">Reservations</h1>
-        <p style="color:var(--muted);font-size:14.5px;margin-top:6px;">{{ $pending }} pending · {{ $confirmed }} confirmed</p>
+        <h1 class="adm-res-title">Reservations</h1>
+        <p class="adm-res-sub">{{ $pending }} pending · {{ $confirmed }} confirmed</p>
     </div>
-    <div style="display:flex;gap:10px;align-items:center;">
-        <div data-adm-segments data-adm-target="reservations" style="display:inline-flex;background:var(--ink-800);border:1px solid var(--line);border-radius:10px;padding:3px;">
+    <div class="adm-res-toolbar">
+        <div data-adm-segments data-adm-target="reservations" class="adm-res-segments">
             <button type="button" data-adm-segment="calendar" style="border:none;background:var(--ink-600);color:var(--cream);padding:7px 14px;border-radius:7px;font-weight:600;font-size:13px;font-family:var(--sans);cursor:pointer;">Calendar</button>
             <button type="button" data-adm-segment="list" style="border:none;background:transparent;color:var(--muted);padding:7px 14px;border-radius:7px;font-weight:600;font-size:13px;font-family:var(--sans);cursor:pointer;">List</button>
         </div>
-        <button type="button" class="btn btn-gold btn-sm" onclick="document.getElementById('new-reservation-dialog')?.showModal()"><x-icon name="plus" :size="16"/> New booking</button>
+        <button type="button" class="btn btn-gold btn-sm adm-res-new" onclick="document.getElementById('new-reservation-dialog')?.showModal()"><x-icon name="plus" :size="16"/> New booking</button>
     </div>
 </div>
 
@@ -97,9 +97,9 @@ $dow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 <div data-adm-view="reservations" data-adm-panel="calendar">
     <div class="adm-cal-wrap">
-        <div class="adm-card" style="padding:20px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
-                <h3 style="font-size:21px;font-weight:600;">{{ $monthLabel }}</h3>
+        <div class="adm-card adm-cal-card">
+            <div class="adm-cal-card__head">
+                <h3 class="adm-cal-card__title">{{ $monthLabel }}</h3>
             </div>
             <div class="adm-cal-grid">
                 @foreach($dow as $d)
@@ -114,8 +114,8 @@ $dow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                     $heat = $count === 0 ? 0 : ($count < 6 ? 1 : ($count < 12 ? 2 : 3));
                 @endphp
                 <div class="adm-cal-cell {{ $d === $today ? 'today' : '' }} {{ $heat ? 'heat-' . $heat : '' }}" style="cursor:default;">
-                    <span style="font-size:13.5px;font-weight:{{ $d === $today ? '700' : '500' }};color:{{ $d === $today ? 'var(--gold-400)' : 'var(--cream-2)' }};">{{ $d }}</span>
-                    @if($count > 0)<span style="font-size:11px;color:var(--sand);font-weight:600;">{{ $count }} bk</span>@endif
+                    <span class="adm-cal-day {{ $d === $today ? 'is-today' : '' }}">{{ $d }}</span>
+                    @if($count > 0)<span class="adm-cal-count">{{ $count }}</span>@endif
                 </div>
                 @endfor
             </div>
@@ -127,13 +127,13 @@ $dow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             </div>
             <div style="padding:12px;">
                 @forelse(array_slice($reservations, 0, 7) as $r)
-                <div style="display:flex;align-items:center;gap:12px;padding:11px;border-radius:10px;border-bottom:1px solid var(--line-soft);">
-                    <div style="font-family:var(--serif);font-size:15px;font-weight:600;color:var(--gold-400);width:48px;flex-shrink:0;">{{ $r['time'] }}</div>
-                    <div style="flex:1;min-width:0;">
+                <div class="adm-res-upcoming-item">
+                    <div class="adm-res-upcoming-time">{{ $r['time'] }}</div>
+                    <div class="adm-res-upcoming-copy">
                         <div style="font-weight:600;font-size:14px;">{{ $r['name'] }}</div>
                         <div style="font-size:12.5px;color:var(--muted);">{{ $r['party'] }} guests · {{ $r['table'] }}</div>
                     </div>
-                    <form action="{{ route('admin.reservations.status', $r['id']) }}" method="POST">
+                    <form action="{{ route('admin.reservations.status', $r['id']) }}" method="POST" class="adm-res-upcoming-status">
                         @csrf @method('PATCH')
                         <select name="status" onchange="this.form.submit()" style="background:var(--ink-700);border:1px solid var(--line);color:var(--cream);border-radius:8px;padding:5px 8px;font-size:12px;font-family:var(--sans);">
                             @foreach($resStatuses as $s)

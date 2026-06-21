@@ -207,7 +207,7 @@ class CartController extends Controller
             return redirect()->route('menu')->with('info', 'Your bag is empty.');
         }
 
-        if (ToastConfiguration::usesHostedMenu()) {
+        if (ToastConfiguration::usesHostedMenu() && session('cart', []) !== []) {
             return ToastConfiguration::resolveCheckoutRedirect();
         }
 

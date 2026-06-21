@@ -31,7 +31,7 @@
                                     <x-icon :name="$m === 'delivery' ? 'truck' : 'bag'" :size="18" color="var(--gold-400)" />
                                     {{ $m === 'delivery' ? 'Delivery' : 'Pickup' }}
                                 </div>
-                                <div class="cust-choice-sub">{{ $m === 'delivery' ? '30–60 min · to your door' : 'Ready for pickup · ' . ($site['address'] ?? '13754 Aurora Ave N') }}</div>
+                                <div class="cust-choice-sub">{{ $m === 'delivery' ? '30–60 min · to your door' : 'Ready for pickup · ' . ($site['address'] ?? '6211 Evergreen Way') }}</div>
                             </label>
                         @endforeach
                     </div>
@@ -41,7 +41,7 @@
                     <h3 class="cust-card-heading">Contact details</h3>
                     <div class="cust-form-grid">
                         <label class="cust-field"><span>Full name</span><input class="cust-inp" name="name" placeholder="Asha Gurung" required value="{{ $prefill['name'] ?? old('name') }}"></label>
-                        <label class="cust-field"><span>Phone</span><input class="cust-inp" name="phone" type="tel" placeholder="{{ $site['phone'] ?? '(206) 397-3211' }}" required value="{{ $prefill['phone'] ?? old('phone') }}"></label>
+                        <label class="cust-field"><span>Phone</span><input class="cust-inp" name="phone" type="tel" placeholder="{{ $site['phone'] ?? '(253) 420-5566' }}" required value="{{ $prefill['phone'] ?? old('phone') }}"></label>
                         <label class="cust-field full"><span>Email</span><input class="cust-inp" name="email" type="email" placeholder="you@email.com" required value="{{ $prefill['email'] ?? old('email') }}"></label>
                         <label class="cust-field full cust-delivery-field"><span>Delivery address</span><input class="cust-inp" name="address" placeholder="Your Seattle delivery address" value="{{ old('address') }}"></label>
                         <label class="cust-field full cust-delivery-field"><span>Delivery notes</span><input class="cust-inp" name="notes" placeholder="Gate code, floor…" value="{{ old('notes') }}"></label>
