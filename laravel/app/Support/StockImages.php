@@ -50,17 +50,9 @@ class StockImages
             'url' => 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80',
             'label' => 'Dine with us',
         ],
-        'Home catering image' => [
-            'url' => 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80',
-            'label' => 'Catering & events',
-        ],
         'Menu hero image' => [
             'url' => 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=80',
             'label' => 'Order from our kitchen',
-        ],
-        'Catering hero image' => [
-            'url' => 'https://images.unsplash.com/photo-1464366400600-7168b8a9a3d2?auto=format&fit=crop&w=1600&q=80',
-            'label' => 'Celebration catering',
         ],
     ];
 
@@ -71,6 +63,7 @@ class StockImages
         'Home journey image 2' => 'food 2.jpeg',
         'Home journey image 3' => 'food 15.jpeg',
         'Home tandoor image' => 'food 9.jpeg',
+        'Catering hero image' => 'food 1.jpeg',
     ];
 
     /** @deprecated Use SECTION_STOCK or SECTION_LOCAL */
@@ -108,6 +101,7 @@ class StockImages
         'gobi manchurian' => 'food 19.jpeg',
 
         'chatpate' => 'food 14.jpeg',
+        'taas' => 'food 14.jpeg',
         'choila' => 'food 14.jpeg',
         'sekuwa' => 'food 14.jpeg',
 
@@ -166,8 +160,8 @@ class StockImages
         'tandoor' => 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=1600&q=80',
         'kitchen' => 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=80',
         'catering spread' => 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80',
-        'catering' => 'https://images.unsplash.com/photo-1464366400600-7168b8a9a3d2?auto=format&fit=crop&w=1600&q=80',
-        'celebration' => 'https://images.unsplash.com/photo-1464366400600-7168b8a9a3d2?auto=format&fit=crop&w=1600&q=80',
+        'catering' => 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80',
+        'celebration' => 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80',
         'gallery' => 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80',
     ];
 
@@ -198,7 +192,7 @@ class StockImages
     private const GALLERY_STOCK_URLS = [
         'house feast spread' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
         'dining room' => 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80',
-        'celebration feast' => 'https://images.unsplash.com/photo-1464366400600-7168b8a9a3d2?auto=format&fit=crop&w=1200&q=80',
+        'celebration feast' => 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80',
         'office lunch setup' => 'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80',
         'family-friendly seating' => 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80',
         'cozy black and red interior' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
