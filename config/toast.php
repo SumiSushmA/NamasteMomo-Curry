@@ -37,18 +37,38 @@ return [
     |
     */
 
-    'online_order_url' => env('TOAST_ONLINE_ORDER_URL'),
+    'online_order_url' => env(
+        'TOAST_ONLINE_ORDER_URL',
+        'https://order.toasttab.com/online/namaste-momo-and-curry-house-6211-evergreen-way'
+    ),
 
     /*
     |--------------------------------------------------------------------------
     | Toast eGift card page
     |--------------------------------------------------------------------------
     |
-    | When set, the public /gift-cards route sends guests to Toast's hosted
-    | gift card purchase page instead of the built-in website form.
+    | When set, the public /gift-cards route shows links to Toast's hosted
+    | gift card purchase and balance pages instead of the built-in website form.
     |
     */
 
-    'gift_card_url' => env('TOAST_GIFT_CARD_URL'),
+    'gift_card_url' => env(
+        'TOAST_GIFT_CARD_URL',
+        'https://order.toasttab.com/egiftcards/namaste-momo-and-curry-house-6211-evergreen-way'
+    ),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Toast gift card balance lookup
+    |--------------------------------------------------------------------------
+    |
+    | When set, "Check balance" links send guests to Toast's hosted balance page.
+    |
+    */
+
+    'gift_card_balance_url' => env(
+        'TOAST_GIFT_CARD_BALANCE_URL',
+        'https://www.toasttab.com/namaste-momo-and-curry-house-6211-evergreen-way/findcard'
+    ),
 
 ];

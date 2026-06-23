@@ -59,6 +59,7 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/gift-cards', [GiftCardController::class, 'create'])->name('giftcards');
+Route::get('/gift-cards/balance', [GiftCardController::class, 'lookup'])->name('giftcards.balance.lookup');
 Route::post('/gift-cards', [GiftCardController::class, 'store'])->name('giftcards.store');
 Route::post('/gift-cards/balance', [GiftCardController::class, 'balance'])->name('giftcards.balance');
 

@@ -90,6 +90,13 @@ class ToastConfiguration
         return self::giftCardUrl() !== null;
     }
 
+    public static function giftCardBalanceUrl(): ?string
+    {
+        $url = trim((string) config('toast.gift_card_balance_url'));
+
+        return filled($url) ? $url : null;
+    }
+
     /** @return array<string, bool> */
     public static function credentialStatus(): array
     {

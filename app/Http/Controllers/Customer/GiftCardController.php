@@ -26,8 +26,12 @@ class GiftCardController extends Controller
 
     public function create(): View|RedirectResponse
     {
-        if ($url = ToastConfiguration::giftCardUrl()) {
-            return redirect()->away($url);
+        if (ToastConfiguration::usesHostedGiftCards()) {
+            return view('customer.gift-cards.hosted', [
+                'bodyPage' => 'giftcards',
+                'purchaseUrl' => ToastConfiguration::giftCardUrl(),
+                'balanceUrl' => ToastConfiguration::giftCardBalanceUrl(),
+            ]);
         }
 
         return view('customer.gift-cards.create', [
@@ -172,8 +176,21 @@ class GiftCardController extends Controller
         return redirect()->route('giftcards')->with('gift_sent', true);
     }
 
-    public function balance(Request $request): JsonResponse
+    public function lookup(): RedirectResponse
     {
+        if ($url = ToastConfiguration::giftCardBalanceUrl()) {
+            return redirect()->away($url);
+        }
+
+        return redirect()->route('giftcards');
+    }
+
+    public function balance(Request $request): JsonResponse|RedirectResponse
+    {
+        if ($url = ToastConfiguration::giftCardBalanceUrl()) {
+            return redirect()->away($url);
+        }
+
         $request->validate(['code' => 'required|string|max:30']);
 
         $code = strtoupper(trim($request->input('code')));

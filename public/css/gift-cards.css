@@ -662,6 +662,24 @@
   text-decoration: none;
 }
 
+.gc-hosted__actions {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.gc-hosted__btn {
+  width: 100%;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.gc-hosted__btn--secondary {
+  background: #fff;
+  color: var(--gc-ink);
+  border: 1px solid var(--gc-line);
+}
+
 /* Responsive */
 @media (max-width: 860px) {
   .gc-occasions {
