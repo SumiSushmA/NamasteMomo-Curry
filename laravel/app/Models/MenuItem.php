@@ -24,6 +24,7 @@ class MenuItem extends Model
         'is_popular',
         'image_label',
         'image_path',
+        'toast_image_url',
         'toast_pos_id',
         'is_available',
         'sort_order',
@@ -64,6 +65,7 @@ class MenuItem extends Model
             'desc' => $this->description,
             'img' => $this->image_label,
             'image_path' => $this->image_path,
+            'toast_image_url' => $this->toast_image_url,
         ];
 
         if (! $this->is_popular) {

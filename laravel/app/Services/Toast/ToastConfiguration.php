@@ -97,6 +97,18 @@ class ToastConfiguration
         return filled($url) ? $url : null;
     }
 
+    public static function tablesUrl(): ?string
+    {
+        $url = trim((string) config('toast.tables_url'));
+
+        return filled($url) ? $url : null;
+    }
+
+    public static function usesHostedReservations(): bool
+    {
+        return self::tablesUrl() !== null;
+    }
+
     /** @return array<string, bool> */
     public static function credentialStatus(): array
     {

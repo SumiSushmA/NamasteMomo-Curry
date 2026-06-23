@@ -18,4 +18,4 @@ Artisan::command('toast:sync-menu', function (ToastSyncService $syncService) {
     }
 
     return $log->is_success ? 0 : 1;
-})->purpose('Sync menu names and prices from Toast POS');
+})->purpose('Sync menu names, prices, and images from Toast POS');
