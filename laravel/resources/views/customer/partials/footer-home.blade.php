@@ -8,7 +8,7 @@
             </div>
             <div class="nm-foot__cta-actions">
                 <a href="{{ route('menu') }}" class="nm-btn nm-btn--primary">Order online <x-icon name="arrow" :size="18" /></a>
-                <a href="{{ route('reserve') }}" class="nm-btn nm-btn--outline">Reserve a table</a>
+                <a href="{{ $toastPayment['tablesUrl'] ?? route('reserve') }}" class="nm-btn nm-btn--outline">Reserve a table</a>
             </div>
         </div>
     </div>
@@ -29,8 +29,8 @@
 
             <div class="nm-foot__col">
                 <h4>Order</h4>
-                @foreach([['Menu', 'menu'], ['Reserve', 'reserve'], ['Catering', 'catering'], ['Gift cards', 'giftcards'], ['Offers', 'promos']] as [$label, $route])
-                    <a href="{{ route($route) }}">{{ $label }}</a>
+                @foreach([['Menu', 'menu'], ['Reserve', 'reserve', $toastPayment['tablesUrl'] ?? null], ['Catering', 'catering', $toastPayment['tablesUrl'] ?? null], ['Gift cards', 'giftcards'], ['Offers', 'promos']] as $link)
+                    <a href="{{ ($link[2] ?? null) ?: route($link[1]) }}">{{ $link[0] }}</a>
                 @endforeach
             </div>
 

@@ -975,18 +975,18 @@
 
 .gem-quote__mark {
   font-family: var(--gem-serif);
-  font-size: 40px;
-  line-height: 0.7;
+  font-size: 28px;
+  line-height: 1;
   color: var(--gem-maroon);
-  opacity: 0.7;
+  opacity: 0.35;
 }
 
 .gem-quote__text {
   margin: 0;
-  font-family: var(--gem-serif);
-  font-style: italic;
-  font-size: clamp(26px, 2vw, 34px);
-  line-height: 1.35;
+  font-family: var(--gem-sans, system-ui, sans-serif);
+  font-style: normal;
+  font-size: 15px;
+  line-height: 1.65;
   color: var(--gem-ink);
 }
 

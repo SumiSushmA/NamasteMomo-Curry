@@ -126,7 +126,7 @@
                                 <span class="gem-collage__label">{{ $journeyTwo }}</span>
                             </div>
                             <div class="gem-collage__tile">
-                                <img src="{{ SiteContent::image('Home journey image 3', 'chilli momo') }}" alt="{{ $journeyThree }}">
+                                <img src="{{ SiteContent::image('Home journey image 3', 'chicken pakora') }}" alt="{{ $journeyThree }}">
                                 <span class="gem-collage__label">{{ $journeyThree }}</span>
                             </div>
                         </div>
@@ -205,7 +205,7 @@
             <h2 class="gem-display gem-display--center gem-reveal" data-reveal>{{ SiteContent::text('Home reserve title', $content['Home reserve title'] ?? '') }}</h2>
             <p class="gem-lead gem-lead--center gem-reveal gem-reveal--delay-1" data-reveal>{{ SiteContent::text('Delivery blurb', $content['Delivery blurb'] ?? '') }}</p>
             <div class="gem-cards">
-                <a href="{{ route('reserve') }}" class="gem-card gem-reveal" data-reveal>
+                <a href="{{ $toastPayment['tablesUrl'] ?? route('reserve') }}" class="gem-card gem-reveal" data-reveal>
                     @php $reserveDish = \App\Support\StockImages::sectionDishName('Home reserve image'); @endphp
                     <div class="gem-card__img">
                         <img src="{{ SiteContent::image('Home reserve image', 'restaurant') }}" alt="{{ $reserveDish }}">
@@ -216,7 +216,7 @@
                         <span class="gem-card__link">Read more</span>
                     </div>
                 </a>
-                <a href="{{ route('catering') }}" class="gem-card gem-reveal gem-reveal--delay-1" data-reveal>
+                <a href="{{ $toastPayment['tablesUrl'] ?? route('catering') }}" class="gem-card gem-reveal gem-reveal--delay-1" data-reveal>
                     @php $cateringDish = \App\Support\StockImages::sectionDishName('Home catering image'); @endphp
                     <div class="gem-card__img">
                         <img src="{{ SiteContent::image('Home catering image', 'khaja set') }}" alt="{{ $cateringDish }}">
