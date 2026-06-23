@@ -16,8 +16,8 @@
     </div>
 
     <div class="cust-gallery-grid">
-        @foreach($shown as $i => $g)
-            <button type="button" class="gallery-item cust-gallery-tile-btn" data-label="{{ $g['label'] }}" data-url="{{ $g['url'] }}" style="grid-column:{{ ($spans[$i % count($spans)] ?? 1) === 2 ? 'span 2' : 'auto' }}">
+        @foreach($shown as $g)
+            <button type="button" class="gallery-item cust-gallery-tile-btn" data-label="{{ $g['label'] }}" data-url="{{ $g['url'] }}">
                 <img src="{{ $g['url'] }}" alt="{{ $g['label'] }}" loading="lazy">
                 <span class="cust-gallery-cap">{{ $g['cat'] }}</span>
             </button>

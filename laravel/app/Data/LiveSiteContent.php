@@ -187,16 +187,16 @@ class LiveSiteContent
             ],
             'items' => [
                 // Appetizer
-                ['id' => 'veg-samosa', 'cat' => 'appetizer', 'name' => 'Vegetable Samosa (2 pcs)', 'price' => 6.95, 'veg' => true, 'spice' => 1, 'popular' => true, 'desc' => 'Deep fried pastries filled with mildly spiced potatoes and peas.', 'img' => 'Vegetable Samosa'],
+                ['id' => 'veg-samosa', 'cat' => 'appetizer', 'name' => 'Vegetable Samosa (2 pcs)', 'price' => 6.95, 'veg' => true, 'spice' => 1, 'desc' => 'Deep fried pastries filled with mildly spiced potatoes and peas.', 'img' => 'Vegetable Samosa'],
                 ['id' => 'chicken-samosa', 'cat' => 'appetizer', 'name' => 'Chicken Samosa (2 pcs)', 'price' => 6.99, 'veg' => false, 'spice' => 1, 'desc' => 'Deep fried pastries filled with spiced chicken.', 'img' => 'Chicken Samosa'],
                 ['id' => 'lamb-samosa', 'cat' => 'appetizer', 'name' => 'Lamb Samosa (2 pcs)', 'price' => 7.95, 'veg' => false, 'spice' => 2, 'desc' => 'Deep fried pastries stuffed with ground lamb and Indian spices.', 'img' => 'Lamb Samosa'],
-                ['id' => 'samosa-chaat', 'cat' => 'appetizer', 'name' => 'Samosa Chaat', 'price' => 7.95, 'veg' => true, 'spice' => 1, 'desc' => 'Vegetable samosa with mint & tamarind sauce, yogurt and garbanzo beans.', 'img' => 'Samosa Chaat'],
+                ['id' => 'samosa-chaat', 'cat' => 'appetizer', 'name' => 'Samosa Chaat', 'price' => 7.95, 'veg' => true, 'spice' => 1, 'popular' => true, 'desc' => 'Vegetable samosa with mint & tamarind sauce, yogurt and garbanzo beans.', 'img' => 'Samosa Chaat'],
                 ['id' => 'veg-pakora', 'cat' => 'appetizer', 'name' => 'Vegetable Pakora (8 pcs)', 'price' => 6.50, 'veg' => true, 'spice' => 1, 'desc' => 'Mixed vegetables deep-fried in gram flour batter.', 'img' => 'Vegetable Pakora'],
                 ['id' => 'paneer-pakora', 'cat' => 'appetizer', 'name' => 'Paneer Pakora (7 pcs)', 'price' => 7.50, 'veg' => true, 'spice' => 1, 'desc' => 'Homemade cheese deep-fried in gram flour batter.', 'img' => 'Paneer Pakora'],
                 ['id' => 'chicken-pakora', 'cat' => 'appetizer', 'name' => 'Chicken Pakora (8 pcs)', 'price' => 9.99, 'veg' => false, 'spice' => 1, 'popular' => true, 'desc' => 'Diced chicken deep-fried in gram flour batter.', 'img' => 'Chicken Pakora'],
                 ['id' => 'chicken-chili', 'cat' => 'appetizer', 'name' => 'Chicken Chili (8 pcs)', 'price' => 10.99, 'veg' => false, 'spice' => 2, 'popular' => true, 'desc' => 'Chicken sautéed with bell pepper, onion, and tomato sauce.', 'img' => 'Chicken Chili'],
                 ['id' => 'gobi-manchurian', 'cat' => 'appetizer', 'name' => 'Gobi Manchurian', 'price' => 7.50, 'veg' => true, 'spice' => 2, 'desc' => 'Cauliflower seasoned with garlic and a blend of spices.', 'img' => 'Gobi Manchurian'],
-                ['id' => 'chatpate', 'cat' => 'appetizer', 'name' => 'Chatpate', 'price' => 7.99, 'veg' => true, 'spice' => 2, 'popular' => true, 'desc' => 'Popular Nepali snack with puffed rice, sev, peanuts, and chopped vegetables.', 'img' => 'Chatpate'],
+                ['id' => 'taas', 'cat' => 'appetizer', 'name' => 'Taas', 'price' => 7.99, 'veg' => false, 'spice' => 2, 'popular' => true, 'desc' => 'Popular Nepali snack with puffed rice, sev, peanuts, and chopped vegetables.', 'img' => 'Taas'],
                 ['id' => 'papadam', 'cat' => 'appetizer', 'name' => 'Papadam (2 pcs)', 'price' => 1.99, 'veg' => true, 'spice' => 0, 'desc' => 'Crispy gram flour wafers with mint and tamarind chutneys.', 'img' => 'Papadam'],
                 // Momo
                 ['id' => 'momo-10', 'cat' => 'momo', 'name' => 'Momo (10 pcs)', 'price' => 11.99, 'veg' => false, 'spice' => 1, 'popular' => true, 'desc' => 'Steamed dumplings with vegetables and ground chicken, ginger, garlic, cilantro, and spices.', 'img' => 'Chicken Momo'],

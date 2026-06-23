@@ -14,7 +14,15 @@
     use App\Support\SiteContent;
     $marquee = SiteContent::text('Marquee text', 'Namaste MoMo & curry house · 6211 Evergreen Way · Steamed · Fried · Jhol momo · Open Tue–Sun 11AM–9PM ·');
     $restaurantName = $site['restaurant_name'] ?? 'Namaste MoMo & curry house';
+    $heroTitleLine1 = preg_replace('/\s+house$/i', '', $restaurantName);
+    $heroTitleSplit = (bool) preg_match('/\s+house$/i', $restaurantName);
     $journeyTitle = SiteContent::text('Home journey title', 'Momo, curry, tandoor — and more.');
+    $journeyTitleParts = preg_split('/,\s*/', $journeyTitle, 3);
+    if (count($journeyTitleParts) >= 3) {
+        $journeyTitleHtml = e($journeyTitleParts[0].', '.$journeyTitleParts[1].',').'<br>'.e($journeyTitleParts[2]);
+    } else {
+        $journeyTitleHtml = str_replace(', ', ',<br>', e($journeyTitle));
+    }
     $stat2 = SiteContent::stat('Home journey stat 2', '11–9', 'Open Tue–Sun');
     $stat3 = SiteContent::stat('Home journey stat 3', '30 min', 'Avg. pickup time');
     $storyBullets = SiteContent::lines('Home story bullets', "Hand-folded momo every day\nCurries made to order\nDine in, pickup & delivery");
@@ -28,7 +36,13 @@
         <div class="gem-hero__bg" data-parallax style="background-image:url('{{ $heroImage }}')"></div>
         <div class="gem-hero__veil"></div>
         <div class="gem-hero__body">
-            <h1 class="gem-hero__title gem-reveal" data-reveal>{{ $restaurantName }}.</h1>
+            <h1 class="gem-hero__title gem-reveal" data-reveal>
+                @if($heroTitleSplit)
+                    {{ $heroTitleLine1 }}<br>house.
+                @else
+                    {{ $restaurantName }}.
+                @endif
+            </h1>
             <p class="gem-hero__lead gem-reveal gem-reveal--delay-1" data-reveal>{{ SiteContent::text('Hero subtext', $content['Hero subtext'] ?? '') }}</p>
         </div>
     </section>
@@ -80,7 +94,7 @@
             <div class="gem-journey">
                 <div class="gem-journey__copy gem-reveal" data-reveal>
                     <p class="gem-eyebrow">{{ SiteContent::text('Home journey eyebrow', 'What we serve') }}</p>
-                    <h2 class="gem-display">{!! str_replace(', ', ',<br>', e($journeyTitle)) !!}</h2>
+                    <h2 class="gem-display">{!! $journeyTitleHtml !!}</h2>
                     <p class="gem-body">{{ SiteContent::text('Hero headline', $content['Hero headline'] ?? '') }}</p>
                     <div class="gem-journey__stats">
                         <div class="gem-journey__stat">
@@ -92,19 +106,19 @@
                             <span>{{ $stat3['label'] }}</span>
                         </div>
                     </div>
-                    <a href="{{ route('menu') }}" class="gem-cta">View our menu</a>
-                    <p class="gem-journey__tagline">{{ SiteContent::text('Home journey badge', 'Folded fresh, never frozen') }}</p>
+                    <a href="{{ route('menu') }}" class="gem-cta gem-journey__cta">View our menu</a>
                 </div>
                 <div class="gem-journey__visual gem-reveal gem-reveal--delay-1" data-reveal>
                     @php
                         $journeyMain = \App\Support\StockImages::sectionDishName('Home journey image main');
                         $journeyTwo = \App\Support\StockImages::sectionDishName('Home journey image 2');
                         $journeyThree = \App\Support\StockImages::sectionDishName('Home journey image 3');
+                        $journeyBadge = SiteContent::text('Home journey badge', 'Folded fresh, never frozen');
                     @endphp
                     <div class="gem-collage">
                         <div class="gem-collage__main">
                             <img src="{{ SiteContent::image('Home journey image main', 'assorted momo platter') }}" alt="{{ $journeyMain }}">
-                            <span class="gem-collage__label">{{ $journeyMain }}</span>
+                            <span class="gem-collage__label">{{ $journeyBadge }}</span>
                         </div>
                         <div class="gem-collage__stack">
                             <div class="gem-collage__tile">
@@ -168,9 +182,10 @@
         <div class="gem-band__veil"></div>
         <div class="gem-band__inner">
             <div class="gem-band__copy gem-band__copy--hero gem-reveal" data-reveal>
-                <p class="gem-eyebrow gem-eyebrow--light">{{ SiteContent::text('Home tandoor eyebrow', 'Clay oven') }}</p>
-                <h2 class="gem-display gem-band__title">{{ SiteContent::text('Home tandoori title', 'Fresh naan from the tandoor') }}</h2>
-                <p class="gem-band__lead">{{ SiteContent::text('Home tandoor text', 'Garlic naan, butter naan, and tandoor-roasted favorites — baked at high heat until soft inside and lightly charred outside.') }}</p>
+                <div class="gem-band__head">
+                    <p class="gem-eyebrow">{{ SiteContent::text('Home tandoor eyebrow', 'Clay oven') }}</p>
+                    <h2 class="gem-display">{{ SiteContent::text('Home tandoori title', 'Fresh naan from the tandoor') }}</h2>
+                </div>
                 <div class="gem-band__meta">
                     @foreach($tandoorTags as $tag)
                         <span>{{ $tag }}</span>
