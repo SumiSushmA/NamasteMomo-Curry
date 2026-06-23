@@ -1,7 +1,11 @@
 @props(['item', 'h' => null, 'w' => null, 'r' => 0])
 
 @php
-$url = \App\Support\StockImages::resolve($item['img'] ?? $item['name'] ?? '', $item['image_path'] ?? null);
+$url = \App\Support\StockImages::resolve(
+    $item['img'] ?? $item['name'] ?? '',
+    $item['image_path'] ?? null,
+    $item['toast_image_url'] ?? null,
+);
 $useFrame = is_numeric($h) || is_numeric($w);
 $frameStyle = collect([
     is_numeric($h) ? "height:{$h}px" : null,

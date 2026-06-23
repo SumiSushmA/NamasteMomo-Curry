@@ -71,4 +71,18 @@ return [
         'https://www.toasttab.com/namaste-momo-and-curry-house-6211-evergreen-way/findcard'
     ),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Toast Tables reservation page
+    |--------------------------------------------------------------------------
+    |
+    | When set, "Reserve" links and /reserve send guests to Toast Tables.
+    |
+    */
+
+    'tables_url' => env(
+        'TOAST_TABLES_URL',
+        'https://tables.toasttab.com/restaurants/be01d346-19ca-4264-99aa-257e2c98d779/findTime'
+    ),
+
 ];

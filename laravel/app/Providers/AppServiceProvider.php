@@ -54,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
                 'orderUrl' => ToastConfiguration::onlineOrderUrl(),
                 'giftCardUrl' => ToastConfiguration::giftCardUrl(),
                 'giftCardBalanceUrl' => ToastConfiguration::giftCardBalanceUrl(),
+                'tablesUrl' => ToastConfiguration::tablesUrl(),
             ]);
         });
 

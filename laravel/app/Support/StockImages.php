@@ -331,8 +331,12 @@ class StockImages
         return self::sectionImage('Home hero image') ?? self::forLabel('hero');
     }
 
-    public static function resolve(?string $label, ?string $imagePath = null): string
+    public static function resolve(?string $label, ?string $imagePath = null, ?string $toastImageUrl = null): string
     {
+        if (filled($toastImageUrl)) {
+            return $toastImageUrl;
+        }
+
         if ($imagePath) {
             if (str_starts_with($imagePath, 'http://') || str_starts_with($imagePath, 'https://')) {
                 return $imagePath;

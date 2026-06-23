@@ -151,7 +151,7 @@
                 <div class="gem-signatures__fade gem-signatures__fade--right" id="gem-signatures-fade-right" aria-hidden="true"></div>
                 <div class="gem-signatures__track" id="gem-signatures-track">
                 @foreach($popularItems as $item)
-                    @php $img = \App\Support\StockImages::resolve($item['img'] ?? $item['name'] ?? '', $item['image_path'] ?? null); @endphp
+                    @php $img = \App\Support\StockImages::resolve($item['img'] ?? $item['name'] ?? '', $item['image_path'] ?? null, $item['toast_image_url'] ?? null); @endphp
                     <a href="{{ route('menu', ['q' => $item['name']]) }}" class="gem-sig-card gem-reveal" data-reveal>
                         <div class="gem-sig-card__media">
                             <img src="{{ $img }}" alt="{{ $item['name'] }}" loading="lazy">

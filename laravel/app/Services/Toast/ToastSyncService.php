@@ -10,6 +10,7 @@ class ToastSyncService
     public function __construct(
         private ToastApiClient $api,
         private ToastMenuPriceResolver $priceResolver,
+        private ToastMenuImageResolver $imageResolver,
     ) {}
 
     public function sync(): ToastSyncLog
@@ -28,7 +29,7 @@ class ToastSyncService
 
             return ToastSyncLog::create([
                 'logged_at' => now(),
-                'message' => "Live Toast sync completed — {$synced} menu items updated with Toast names and prices.",
+                'message' => "Live Toast sync completed — {$synced} menu items updated with Toast names, prices, and images.",
                 'is_success' => true,
             ]);
         } catch (\Throwable $e) {
@@ -67,11 +68,13 @@ class ToastSyncService
 
             $price = $this->priceResolver->resolve($toastItem, $menuPayload);
             $description = trim((string) ($toastItem['description'] ?? ''));
+            $imageUrl = $this->imageResolver->resolve($toastItem);
 
             $changes = [
                 'toast_pos_id' => $guid,
                 'name' => $name,
                 'is_available' => $this->isVisibleOnOnlineOrdering($toastItem),
+                'toast_image_url' => $imageUrl,
             ];
 
             if ($price !== null) {
