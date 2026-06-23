@@ -1,0 +1,216 @@
+/* ============================================================
+   Unified typography — customer site + admin
+   One heading family/size scale, one body scale, one button style
+   ============================================================ */
+
+/* ---- Page shells: body text ---- */
+#cust-root .gem,
+#cust-root .abt,
+#cust-root .ct,
+#cust-root .cater,
+#cust-root .offers-page,
+#cust-root .gc-page,
+#cust-root .e404,
+#cust-root .off,
+#cust-root .menu-page,
+#cust-root main {
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--type-leading-body);
+}
+
+#cust-root p,
+#cust-root li,
+#cust-root label,
+#cust-root .gem-lead,
+#cust-root .gem-body,
+#cust-root .ct-hero__lead,
+#cust-root .abt-opening__lead,
+#cust-root .cater-mast__lead,
+#cust-root .offers-hero__lead,
+#cust-root .gc-page p,
+#cust-root .cust-field span {
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--type-leading-body);
+}
+
+#cust-root small,
+#cust-root .gem-sig-card__body p,
+#cust-root .gem-card__body p,
+#cust-root .nm-foot__brand p,
+#cust-root .nm-foot__col a,
+#cust-root .nm-foot__col p,
+#cust-root .cust-foot-lead {
+  font-size: var(--type-body-sm);
+}
+
+/* ---- Eyebrows / kickers / labels ---- */
+#cust-root .eyebrow,
+#cust-root .gem-eyebrow,
+#cust-root .nm-label,
+#cust-root .cater-kicker,
+#cust-root .ct-hero__eyebrow,
+#cust-root .offers-hero__eyebrow,
+#cust-root .abt-opening__tag,
+#cust-root .abt-opening__side,
+#cust-root .abt-locate__eyebrow,
+#cust-root [class*="__eyebrow"],
+#cust-root [class*="__tag"]:not(.abt-team-card__meta span) {
+  font-family: var(--font-body) !important;
+  font-size: var(--type-eyebrow) !important;
+  font-weight: var(--type-weight-eyebrow) !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---- H1 — page titles ---- */
+#cust-root h1,
+#cust-root .gem-hero__title,
+#cust-root .abt-opening__title,
+#cust-root .ct-hero h1,
+#cust-root .cater-mast h1,
+#cust-root .offers-hero h1,
+#cust-root .gc-hero h1,
+#cust-root .gc-page > header h1,
+#cust-root .e404 h1,
+#cust-root .off h1,
+#cust-root .menu-hero .gem-hero__title {
+  font-family: var(--font-heading) !important;
+  font-size: var(--type-h1) !important;
+  font-weight: var(--type-weight-heading) !important;
+  line-height: var(--type-leading-heading) !important;
+}
+
+/* ---- H2 — section headings ---- */
+#cust-root h2,
+#cust-root .gem-display,
+#cust-root .gem-band__title,
+#cust-root .cust-prefooter__title,
+#cust-root .nm-foot__cta h2,
+#cust-root .abt-values__head h2,
+#cust-root .abt-team__heading,
+#cust-root .abt-locate__head h2,
+#cust-root .abt-story__aside h2,
+#cust-root .abt-pullquote blockquote,
+#cust-root .offer-deal__title,
+#cust-root .cater-split__title,
+#cust-root .cater-mast__stat strong,
+#cust-root .gc-section h2,
+#cust-root .gc-checkout h2 {
+  font-family: var(--font-heading) !important;
+  font-size: var(--type-h2) !important;
+  font-weight: var(--type-weight-heading) !important;
+  line-height: var(--type-leading-heading) !important;
+}
+
+/* ---- H3 — card / block headings ---- */
+#cust-root h3,
+#cust-root .gem-sig-card__body h3,
+#cust-root .gem-card__body h3,
+#cust-root .abt-value h3,
+#cust-root .abt-locate__card h3,
+#cust-root .ct-info h3,
+#cust-root .cater-panel h3,
+#cust-root .gc-card h3,
+#cust-root .offer-card h3 {
+  font-family: var(--font-heading) !important;
+  font-size: var(--type-h3) !important;
+  font-weight: var(--type-weight-heading) !important;
+  line-height: 1.2 !important;
+}
+
+/* ---- H4 — small headings ---- */
+#cust-root h4,
+#cust-root .nm-foot__col h4,
+#cust-root .cust-foot-col h4 {
+  font-family: var(--font-heading) !important;
+  font-size: var(--type-h4) !important;
+  font-weight: var(--type-weight-heading) !important;
+  line-height: 1.3 !important;
+}
+
+/* ---- Stat numbers use heading font but keep visual emphasis ---- */
+#cust-root .abt-stat__val,
+#cust-root .gem-journey__stat strong {
+  font-family: var(--font-heading) !important;
+  font-weight: var(--type-weight-heading) !important;
+}
+
+#cust-root .gem-journey__stat span,
+#cust-root .abt-stat__label {
+  font-family: var(--font-body) !important;
+  font-size: var(--type-body-sm) !important;
+}
+
+/* ---- All buttons & button-like links ---- */
+#cust-root .btn,
+#cust-root .btn-gold,
+#cust-root .btn-ghost,
+#cust-root .btn-spice,
+#cust-root .btn-sm,
+#cust-root .btn-lg,
+#cust-root .gem-btn,
+#cust-root .gem-cta,
+#cust-root .nm-btn,
+#cust-root .nm-btn--primary,
+#cust-root .nm-btn--outline,
+#cust-root .cust-prefooter__btn,
+#cust-root .offers-btn,
+#cust-root .offers-btn--primary,
+#cust-root .offers-btn--dark,
+#cust-root .offers-btn--subscribe,
+#cust-root .cater-dock__btn,
+#cust-root .cater-tray-card__btn,
+#cust-root .gc-redeem__btn,
+#cust-root .gc-home-btn,
+#cust-root .gc-copy-btn,
+#cust-root .ct-action,
+#cust-root .ct-form button[type="submit"],
+#cust-root .cater-form button[type="submit"],
+#cust-root button.cust-btn,
+#cust-root a.cust-btn,
+#cust-root .gem-band__actions a,
+#cust-root #cust-header .btn-gold,
+#cust-root #cust-header .btn-ghost {
+  font-family: var(--font-body) !important;
+  font-size: var(--type-btn) !important;
+  font-weight: var(--type-weight-btn) !important;
+  letter-spacing: 0.01em;
+}
+
+/* Footer phone/email — match other footer links */
+#cust-root .nm-foot__phone,
+#cust-root .gem-foot__phone {
+  font-family: var(--font-body) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+/* ---- Admin panel ---- */
+#adm-main {
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--type-leading-body);
+}
+
+#adm-main h1,
+#adm-main h2,
+#adm-main h3,
+#adm-main h4 {
+  font-family: var(--font-heading);
+  font-weight: var(--type-weight-heading);
+}
+
+#adm-main h1 { font-size: var(--type-h1); line-height: var(--type-leading-heading); }
+#adm-main h2 { font-size: var(--type-h2); line-height: var(--type-leading-heading); }
+#adm-main h3 { font-size: var(--type-h3); line-height: 1.2; }
+#adm-main h4 { font-size: var(--type-h4); line-height: 1.3; }
+
+#adm-main .btn,
+#adm-main button[type="submit"],
+#adm-main .adm-btn {
+  font-family: var(--font-body) !important;
+  font-size: var(--type-btn) !important;
+  font-weight: var(--type-weight-btn) !important;
+}
