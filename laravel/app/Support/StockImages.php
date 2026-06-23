@@ -27,7 +27,7 @@ class StockImages
         'food 12.jpeg' => 'Chicken Pakora',
         'food 13.jpeg' => 'French Fries',
         'food 14.jpeg' => 'Chatpate & Choila',
-        'food 15.jpeg' => 'Chilli Momo',
+        'food 15.jpeg' => 'Tandoori Momo',
         'food 16.jpeg' => 'Mango Lassi',
         'food 17.jpeg' => 'Strawberry Lassi',
         'food 18.jpeg' => 'Aloo Gobi',
@@ -61,7 +61,7 @@ class StockImages
     private const SECTION_LOCAL = [
         'Home journey image main' => 'food 20.jpeg',
         'Home journey image 2' => 'food 2.jpeg',
-        'Home journey image 3' => 'food 15.jpeg',
+        'Home journey image 3' => 'food 12.jpeg',
         'Home tandoor image' => 'food 9.jpeg',
         'Catering hero image' => 'food 1.jpeg',
     ];
@@ -79,10 +79,9 @@ class StockImages
         'butter masala momo' => 'food 20.jpeg',
         'jhol (soup) momo' => 'food 20.jpeg',
         'jhol momo' => 'food 20.jpeg',
-        'chilli momo' => 'food 15.jpeg',
-        'chili momo' => 'food 15.jpeg',
-        'c-momo' => 'food 15.jpeg',
-        'tandoori chicken momos' => 'food 15.jpeg',
+        'chilli momo' => 'food 20.jpeg',
+        'chili momo' => 'food 20.jpeg',
+        'c-momo' => 'food 20.jpeg',
         'chicken momo' => 'food 20.jpeg',
         'momo' => 'food 20.jpeg',
 
@@ -108,6 +107,7 @@ class StockImages
         'korma' => 'food 4.jpeg',
         'butter curry' => 'food 4.jpeg',
         'tikka masala' => 'food 6.jpeg',
+        'matar paneer' => 'food 6.jpeg',
         'kadai paneer' => 'food 6.jpeg',
         'karahi' => 'food 6.jpeg',
         'shahi paneer' => 'food 6.jpeg',
@@ -132,6 +132,7 @@ class StockImages
         'khaja set' => 'food 7.jpeg',
         'daal soup' => 'food 3.jpeg',
 
+        'plain butter naan' => 'food 9.jpeg',
         'garlic basil naan' => 'food 9.jpeg',
         'garlic naan' => 'food 9.jpeg',
         'naan' => 'food 9.jpeg',
@@ -147,7 +148,7 @@ class StockImages
         'lassi' => 'food 16.jpeg',
 
         'founder' => 'food 8.jpeg',
-        'promo' => 'food 15.jpeg',
+        'promo' => 'food 20.jpeg',
     ];
 
     /** Non-dish labels → online stock URL */
@@ -170,7 +171,7 @@ class StockImages
     private const GALLERY_CAPTION_FILES = [
         'assorted momo platter' => 'food 20.jpeg',
         'combo momo' => 'food 20.jpeg',
-        'chilli momo' => 'food 15.jpeg',
+        'chilli momo' => 'food 20.jpeg',
         'butter masala momo' => 'food 20.jpeg',
         'chicken chili' => 'food 19.jpeg',
         'chicken pakora' => 'food 12.jpeg',

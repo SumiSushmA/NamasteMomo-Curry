@@ -25,7 +25,7 @@ $mobileLinks = array_merge(
 
         <nav class="cust-navlinks">
             @foreach($navLinks as $link)
-                <a href="{{ $link['url'] ?? route($link['route']) }}" class="{{ request()->routeIs($link['route']) ? 'active' : '' }}" @if(!empty($link['url'])) target="_blank" rel="noopener noreferrer" @endif>{{ $link['label'] }}</a>
+                <a href="{{ $link['url'] ?? route($link['route']) }}" class="{{ request()->routeIs($link['route']) ? 'active' : '' }}">{{ $link['label'] }}</a>
             @endforeach
         </nav>
 
@@ -47,7 +47,7 @@ $mobileLinks = array_merge(
                     <span id="cust-cart-count">{{ $cartCount }}</span>
                 @endif
             </button>
-            <a href="{{ $reserveUrl ?: route('reserve') }}" class="btn btn-ghost btn-sm cust-reserve-btn" @if($reserveUrl) target="_blank" rel="noopener noreferrer" @endif>Reserve</a>
+            <a href="{{ $toastPayment['tablesUrl'] ?? route('reserve') }}" class="btn btn-ghost btn-sm cust-reserve-btn">Reserve</a>
             <a href="{{ route('menu') }}" class="btn btn-gold btn-sm">Order Online</a>
             <button type="button" id="cust-burger" class="cust-burger" aria-label="Menu">
                 <x-icon name="menu" :size="20" />
@@ -65,7 +65,7 @@ $mobileLinks = array_merge(
             </button>
         </div>
         @foreach($mobileLinks as $link)
-            <a href="{{ $link['url'] ?? route($link['route']) }}" class="{{ request()->routeIs($link['route']) ? 'active' : '' }}" @if(!empty($link['url'])) target="_blank" rel="noopener noreferrer" @endif>{{ $link['label'] }}</a>
+            <a href="{{ $link['url'] ?? route($link['route']) }}" class="{{ request()->routeIs($link['route']) ? 'active' : '' }}">{{ $link['label'] }}</a>
         @endforeach
         <a href="{{ route('menu') }}" class="btn btn-gold" style="margin-top:18px;text-align:center">Order Online</a>
     </div>

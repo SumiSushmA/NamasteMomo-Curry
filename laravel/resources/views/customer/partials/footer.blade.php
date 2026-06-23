@@ -36,8 +36,8 @@
                     </div>
                     <div class="cust-foot-col">
                         <h4>Order</h4>
-                        @foreach([['Menu & Order', 'menu'], ['Reserve a Table', 'reserve'], ['Catering', 'catering'], ['Gift Cards', 'giftcards'], ['Offers', 'promos']] as [$label, $route])
-                            <a href="{{ route($route) }}">{{ $label }}</a>
+                        @foreach([['Menu & Order', 'menu'], ['Reserve a Table', 'reserve', $toastPayment['tablesUrl'] ?? null], ['Catering', 'catering', $toastPayment['tablesUrl'] ?? null], ['Gift Cards', 'giftcards'], ['Offers', 'promos']] as $link)
+                            <a href="{{ ($link[2] ?? null) ?: route($link[1]) }}">{{ $link[0] }}</a>
                         @endforeach
                     </div>
                     <div class="cust-foot-col">
