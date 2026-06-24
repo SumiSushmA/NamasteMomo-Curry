@@ -89,8 +89,7 @@ class AccountAuthController extends Controller
 
         if (! $customer) {
             return redirect()
-                ->route('account.password.reset', ['email' => $email])
-                ->with('success', 'If that email is registered, we sent a 6-digit reset code.');
+                ->route('account.password.reset', ['email' => $email]);
         }
 
         try {
@@ -104,8 +103,7 @@ class AccountAuthController extends Controller
         }
 
         return redirect()
-            ->route('account.password.reset', ['email' => $email])
-            ->with('success', 'We sent a 6-digit reset code to '.$email.'. Check your inbox and spam folder.');
+            ->route('account.password.reset', ['email' => $email]);
     }
 
     public function showResetForm(Request $request): View|RedirectResponse

@@ -474,6 +474,12 @@
   color: #fff;
 }
 
+#cust-root[data-page="home"] .gem-hero__title {
+  font-size: clamp(2.875rem, 6.5vw, 4.5rem) !important;
+  line-height: 0.96 !important;
+  max-width: 900px;
+}
+
 .gem-hero__lead {
   margin: 28px 0 0;
   max-width: 520px;
@@ -481,6 +487,13 @@
   font-size: clamp(16px, 1.8vw, 19px);
   line-height: 1.65;
   color: #fff;
+}
+
+#cust-root[data-page="home"] .gem-hero__lead {
+  font-size: clamp(0.9375rem, 1.65vw, 1.125rem);
+  line-height: 1.62;
+  max-width: 34rem;
+  margin-top: 1.5rem;
 }
 
 /* Ticker */
@@ -538,7 +551,7 @@
 
 .gem-journey {
   display: grid;
-  grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
   gap: clamp(48px, 7vw, 88px);
   align-items: start;
 }
@@ -599,9 +612,14 @@
 
 .gem-collage {
   display: grid;
-  grid-template-columns: 1.18fr 0.82fr;
+  grid-template-columns: 1.05fr 0.95fr;
   gap: 12px;
-  min-height: clamp(420px, 42vw, 520px);
+  align-items: stretch;
+  max-height: clamp(400px, 38vw, 460px);
+}
+
+.gem-collage--duo .gem-collage__tile {
+  min-height: 0;
 }
 
 .gem-collage__main,
@@ -610,25 +628,33 @@
   overflow: hidden;
   border-radius: 4px;
   background: #e2d8cb;
+  min-height: 0;
 }
 
 .gem-collage__main {
-  min-height: 100%;
+  max-height: clamp(400px, 38vw, 460px);
 }
 
 .gem-collage__stack {
   display: grid;
   grid-template-rows: 1fr 1fr;
   gap: 12px;
+  max-height: clamp(400px, 38vw, 460px);
+  min-height: 0;
 }
 
 .gem-collage__main img,
 .gem-collage__tile img {
   width: 100%;
   height: 100%;
-  min-height: 100%;
+  min-height: 0;
   object-fit: cover;
+  object-position: center;
   display: block;
+}
+
+.gem-collage__main img {
+  object-position: center 42%;
 }
 
 .gem-collage__label {
@@ -1222,7 +1248,17 @@
   }
 
   .gem-collage {
-    min-height: auto;
+    max-height: none;
+  }
+
+  .gem-collage__main,
+  .gem-collage__stack {
+    max-height: min(360px, 72vw);
+  }
+
+  .gem-collage__stack {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
   }
 
   .gem-sig-card {
@@ -1304,6 +1340,16 @@
 
   .gem-hero__body {
     padding-bottom: 60px;
+  }
+
+  #cust-root[data-page="home"] .gem-hero__title {
+    font-size: clamp(2.375rem, 10vw, 3.25rem) !important;
+    max-width: none;
+  }
+
+  #cust-root[data-page="home"] .gem-hero__lead {
+    font-size: 0.9375rem;
+    max-width: none;
   }
 
   .gem-newsletter__actions {

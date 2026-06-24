@@ -72,9 +72,8 @@
   border-color: rgba(122, 40, 54, 0.5);
 }
 
-/* Unified customer header — all pages */
-#cust-root #cust-header,
-#cust-root #cust-header.solid {
+/* Unified customer header — solid at top, glassy when scrolled */
+#cust-root #cust-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -85,6 +84,15 @@
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line) !important;
   box-shadow: 0 10px 30px rgba(28, 20, 16, 0.08);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+#cust-root #cust-header.is-scrolled {
+  background: rgba(243, 237, 228, 0.42) !important;
+  backdrop-filter: blur(22px) saturate(1.2);
+  -webkit-backdrop-filter: blur(22px) saturate(1.2);
+  border-bottom: 1px solid rgba(28, 20, 16, 0.08) !important;
+  box-shadow: none;
 }
 
 #cust-root #cust-header .cust-navlinks a {

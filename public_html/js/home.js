@@ -43,7 +43,7 @@
   window.addEventListener('scroll', onScroll, { passive: true });
 
   if (header) {
-    header.classList.add('is-ready', 'solid');
+    header.classList.add('is-ready');
   }
 
   var sigTrack = document.getElementById('gem-signatures-track');

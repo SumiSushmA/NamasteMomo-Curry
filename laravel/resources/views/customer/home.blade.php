@@ -16,7 +16,7 @@
     $restaurantName = $site['restaurant_name'] ?? 'Namaste MoMo & curry house';
     $heroTitleLine1 = preg_replace('/\s+house$/i', '', $restaurantName);
     $heroTitleSplit = (bool) preg_match('/\s+house$/i', $restaurantName);
-    $journeyTitle = SiteContent::text('Home journey title', 'Momo, curry, tandoor — and more.');
+    $journeyTitle = SiteContent::text('Home journey title', 'Momo, curry — and more.');
     $journeyTitleParts = preg_split('/,\s*/', $journeyTitle, 3);
     if (count($journeyTitleParts) >= 3) {
         $journeyTitleHtml = e($journeyTitleParts[0].', '.$journeyTitleParts[1].',').'<br>'.e($journeyTitleParts[2]);
@@ -26,7 +26,7 @@
     $stat2 = SiteContent::stat('Home journey stat 2', '11–9', 'Open Tue–Sun');
     $stat3 = SiteContent::stat('Home journey stat 3', '30 min', 'Avg. pickup time');
     $storyBullets = SiteContent::lines('Home story bullets', "Hand-folded momo every day\nCurries made to order\nDine in, pickup & delivery");
-    $tandoorTags = SiteContent::lines('Home tandoor tags', "Yogurt-marinated\nHigh-heat roasted\nServed with chutney");
+    $tandoorTags = SiteContent::lines('Home tandoor tags', "Vegetable, paneer & chicken\nFlaky pastry, spiced filling\nMint & tamarind chutney");
 @endphp
 
 <div class="gem">
@@ -92,7 +92,31 @@
     <section class="gem-section gem-section--journey">
         <div class="gem-container">
             <div class="gem-journey">
-                <div class="gem-journey__copy gem-reveal" data-reveal>
+                <div class="gem-journey__visual gem-reveal" data-reveal>
+                    @php
+                        $journeyMain = \App\Support\StockImages::sectionDishName('Home journey image main');
+                        $journeyVeg = \App\Support\StockImages::sectionDishName('Home journey image 2');
+                        $journeyBiryani = \App\Support\StockImages::sectionDishName('Home journey image 3');
+                        $journeyBadge = SiteContent::text('Home journey badge', 'Folded fresh, never frozen');
+                    @endphp
+                    <div class="gem-collage">
+                        <div class="gem-collage__main">
+                            <img src="{{ SiteContent::image('Home journey image main', 'momo') }}" alt="{{ $journeyMain }}">
+                            <span class="gem-collage__label">{{ $journeyBadge }}</span>
+                        </div>
+                        <div class="gem-collage__stack">
+                            <div class="gem-collage__tile">
+                                <img src="{{ SiteContent::image('Home journey image 2', 'chowmein') }}" alt="{{ $journeyVeg }}">
+                                <span class="gem-collage__label">{{ $journeyVeg }}</span>
+                            </div>
+                            <div class="gem-collage__tile">
+                                <img src="{{ SiteContent::image('Home journey image 3', 'biryani') }}" alt="{{ $journeyBiryani }}">
+                                <span class="gem-collage__label">{{ $journeyBiryani }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gem-journey__copy gem-reveal gem-reveal--delay-1" data-reveal>
                     <p class="gem-eyebrow">{{ SiteContent::text('Home journey eyebrow', 'What we serve') }}</p>
                     <h2 class="gem-display">{!! $journeyTitleHtml !!}</h2>
                     <p class="gem-body">{{ SiteContent::text('Hero headline', $content['Hero headline'] ?? '') }}</p>
@@ -107,30 +131,6 @@
                         </div>
                     </div>
                     <a href="{{ route('menu') }}" class="gem-cta gem-journey__cta">View our menu</a>
-                </div>
-                <div class="gem-journey__visual gem-reveal gem-reveal--delay-1" data-reveal>
-                    @php
-                        $journeyMain = \App\Support\StockImages::sectionDishName('Home journey image main');
-                        $journeyTwo = \App\Support\StockImages::sectionDishName('Home journey image 2');
-                        $journeyThree = \App\Support\StockImages::sectionDishName('Home journey image 3');
-                        $journeyBadge = SiteContent::text('Home journey badge', 'Folded fresh, never frozen');
-                    @endphp
-                    <div class="gem-collage">
-                        <div class="gem-collage__main">
-                            <img src="{{ SiteContent::image('Home journey image main', 'assorted momo platter') }}" alt="{{ $journeyMain }}">
-                            <span class="gem-collage__label">{{ $journeyBadge }}</span>
-                        </div>
-                        <div class="gem-collage__stack">
-                            <div class="gem-collage__tile">
-                                <img src="{{ SiteContent::image('Home journey image 2', 'samosa chaat') }}" alt="{{ $journeyTwo }}">
-                                <span class="gem-collage__label">{{ $journeyTwo }}</span>
-                            </div>
-                            <div class="gem-collage__tile">
-                                <img src="{{ SiteContent::image('Home journey image 3', 'chicken pakora') }}" alt="{{ $journeyThree }}">
-                                <span class="gem-collage__label">{{ $journeyThree }}</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -175,16 +175,16 @@
         </div>
     </section>
 
-    {{-- Tandoor feature --}}
-    @php $tandoorDish = \App\Support\StockImages::sectionDishName('Home tandoor image'); @endphp
+    {{-- Starters feature --}}
+    @php $startersDish = \App\Support\StockImages::sectionDishName('Home tandoor image'); @endphp
     <section class="gem-band">
-        <img src="{{ SiteContent::image('Home tandoor image', 'naan') }}" alt="{{ $tandoorDish }}">
+        <img src="{{ SiteContent::image('Home tandoor image', 'samosa') }}" alt="{{ $startersDish }}">
         <div class="gem-band__veil"></div>
         <div class="gem-band__inner">
             <div class="gem-band__copy gem-band__copy--hero gem-reveal" data-reveal>
                 <div class="gem-band__head">
-                    <p class="gem-eyebrow">{{ SiteContent::text('Home tandoor eyebrow', 'Clay oven') }}</p>
-                    <h2 class="gem-display">{{ SiteContent::text('Home tandoori title', 'Fresh naan from the tandoor') }}</h2>
+                    <p class="gem-eyebrow">{{ SiteContent::text('Home tandoor eyebrow', 'Starters') }}</p>
+                    <h2 class="gem-display">{{ SiteContent::text('Home tandoori title', 'Crispy golden samosa') }}</h2>
                 </div>
                 <div class="gem-band__meta">
                     @foreach($tandoorTags as $tag)
@@ -192,7 +192,7 @@
                     @endforeach
                 </div>
                 <div class="gem-band__actions gem-reveal gem-reveal--delay-1" data-reveal>
-                    <a href="{{ route('menu') }}" class="gem-btn">Explore naan & tandoori</a>
+                    <a href="{{ route('menu') }}" class="gem-btn">Explore appetizers</a>
                     <a href="{{ route('menu') }}" class="gem-btn gem-btn--ghost">Order online</a>
                 </div>
             </div>

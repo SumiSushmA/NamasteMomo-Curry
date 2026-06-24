@@ -13,9 +13,6 @@
             <p>Enter the 6-digit code sent to <strong style="color:var(--cream)">{{ $email }}</strong> and choose a new password.</p>
         </div>
 
-        @if(session('success'))
-            <div class="acct-alert">{{ session('success') }}</div>
-        @endif
         @if($errors->any())
             <div class="acct-alert acct-alert-error">{{ $errors->first() }}</div>
         @endif

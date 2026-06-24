@@ -47,7 +47,7 @@ class LiveSiteContent
             'Home story text' => 'Namaste MoMo & curry house opened on Evergreen Way with one goal: serve momo the way families make them at home — fresh fillings, soft wrappers, and sauces worth dipping into again and again. From combo platters to slow-simmered curries and naan from the clay oven, this is comfort food made with real care.',
             'Home momo title' => 'The momo menu',
             'Home momo text' => 'Steamed, fried, jhol, sandheko, chili, butter masala, and tandoori — plus our four-style Combo Momo Feast.',
-            'Home tandoori title' => 'Roasted in the tandoor',
+            'Home tandoori title' => 'Crispy golden samosa',
             'Home curry title' => 'Homestyle curries & plates',
             'Home signatures title' => 'Dishes our guests order first',
             'Home delivery title' => 'Pickup & delivery',
