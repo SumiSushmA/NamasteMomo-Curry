@@ -64,7 +64,7 @@ class RestaurantData
 
     public static function popularItems(int $limit = 6): array
     {
-        return MenuItem::query()
+        $items = MenuItem::query()
             ->with('category')
             ->where('is_available', true)
             ->where('is_popular', true)
@@ -73,6 +73,23 @@ class RestaurantData
             ->get()
             ->map(fn (MenuItem $item) => $item->toLegacy())
             ->all();
+
+        $last = null;
+        $ordered = [];
+
+        foreach ($items as $item) {
+            if (strcasecmp($item['name'] ?? '', 'Chicken Pakora') === 0) {
+                $last = $item;
+                continue;
+            }
+            $ordered[] = $item;
+        }
+
+        if ($last !== null) {
+            $ordered[] = $last;
+        }
+
+        return $ordered;
     }
 
     public static function promos(): array

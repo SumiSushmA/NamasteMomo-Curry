@@ -26,16 +26,6 @@
                 <h1>{{ \App\Support\SiteContent::text('Contact title', "We'd love to hear from you") }}</h1>
                 <p class="ct-hero__lead">{{ \App\Support\SiteContent::text('Contact lead', '') }}</p>
             </div>
-            <div class="ct-hero__card">
-                <div class="ct-hero__card-label">Find us</div>
-                <p class="ct-hero__address">
-                    {{ $address }}
-                    <span class="ct-hero__city">{{ $city }}</span>
-                </p>
-                <a href="{{ $mapsLink }}" target="_blank" rel="noopener" class="ct-hero__map-link">
-                    Get directions <x-icon name="arrow" :size="14" />
-                </a>
-            </div>
         </div>
     </header>
 

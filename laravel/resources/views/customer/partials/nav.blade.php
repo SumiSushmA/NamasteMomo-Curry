@@ -18,7 +18,7 @@ $mobileLinks = array_merge(
 );
 @endphp
 
-<header id="cust-header" class="solid">
+<header id="cust-header">
     <div class="cust-inner">
         <x-logo :size="34" :href="route('home')" />
 

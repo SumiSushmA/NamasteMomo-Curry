@@ -11,7 +11,6 @@
             <x-logo :size="40" />
             <h1>Forgot password</h1>
             <p>Enter the <strong style="color:var(--cream)">same email you used to create your account</strong>. We’ll send a 6-digit code there.</p>
-            <p style="color:var(--muted);font-size:13.5px;margin-top:10px;line-height:1.55">This is not the restaurant contact email — it must match your sign-in account. Check spam if you don’t see the code within a minute.</p>
         </div>
 
         @if(session('success'))

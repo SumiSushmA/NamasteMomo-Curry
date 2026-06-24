@@ -26,22 +26,23 @@ class StockImages
         'food 11.jpeg' => 'Garden Salad',
         'food 12.jpeg' => 'Chicken Pakora',
         'food 13.jpeg' => 'French Fries',
-        'food 14.jpeg' => 'Chatpate & Choila',
+        'food 14.jpeg' => 'Lamb Sekuwa',
         'food 15.jpeg' => 'Tandoori Momo',
         'food 16.jpeg' => 'Mango Lassi',
         'food 17.jpeg' => 'Strawberry Lassi',
         'food 18.jpeg' => 'Aloo Gobi',
         'food 19.jpeg' => 'Chicken Chili',
         'food 20.jpeg' => 'Assorted Momo Platter',
+        'hero-section.png' => 'Curry feast',
+        'momo.jpg' => 'Assorted Momo Platter',
+        'biryani.jpg' => 'Biryani',
+        'chowmein.jpg' => 'Veg Chow Mein',
+        'samosa.jpg' => 'Samosa',
     ];
 
     /** Homepage sections — online photos for ambiance (hero, dining, catering, etc.) */
     /** @var array<string, array{url: string, label: string}> */
     private const SECTION_STOCK = [
-        'Home hero image' => [
-            'url' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
-            'label' => 'Restaurant dining room',
-        ],
         'Home story image' => [
             'url' => 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=80',
             'label' => 'Fresh from our kitchen',
@@ -59,10 +60,11 @@ class StockImages
     /** Homepage sections — local dish photos only */
     /** @var array<string, string> */
     private const SECTION_LOCAL = [
-        'Home journey image main' => 'food 20.jpeg',
-        'Home journey image 2' => 'food 2.jpeg',
-        'Home journey image 3' => 'food 12.jpeg',
-        'Home tandoor image' => 'food 9.jpeg',
+        'Home hero image' => 'hero-section.png',
+        'Home journey image main' => 'momo.jpg',
+        'Home journey image 2' => 'chowmein.jpg',
+        'Home journey image 3' => 'biryani.jpg',
+        'Home tandoor image' => 'samosa.jpg',
         'Catering hero image' => 'food 1.jpeg',
     ];
 
@@ -72,6 +74,11 @@ class StockImages
     /** Menu / dish labels → photo file (longer keys win on partial match). */
     /** @var array<string, string> */
     private const MENU_LABEL_FILES = [
+        'hero' => 'hero-section.png',
+        'momo' => 'momo.jpg',
+        'biryani' => 'biryani.jpg',
+        'chow mein' => 'chowmein.jpg',
+        'chowmein' => 'chowmein.jpg',
         'assorted momo platter' => 'food 20.jpeg',
         'combo momo' => 'food 20.jpeg',
         'sandheko momo' => 'food 20.jpeg',
@@ -85,11 +92,13 @@ class StockImages
         'chicken momo' => 'food 20.jpeg',
         'momo' => 'food 20.jpeg',
 
-        'samosa chaat' => 'food 2.jpeg',
-        'vegetable samosa' => 'food 2.jpeg',
-        'chicken samosa' => 'food 2.jpeg',
-        'lamb samosa' => 'food 2.jpeg',
-        'samosa' => 'food 2.jpeg',
+        'samosa chaat' => 'samosa.jpg',
+        'vegetable samosa' => 'samosa.jpg',
+        'chicken samosa' => 'samosa.jpg',
+        'lamb samosa' => 'samosa.jpg',
+        'paneer samosa' => 'samosa.jpg',
+        'chholey samosa' => 'samosa.jpg',
+        'samosa' => 'samosa.jpg',
 
         'chicken pakora' => 'food 12.jpeg',
         'paneer pakora' => 'food 6.jpeg',
@@ -99,9 +108,7 @@ class StockImages
         'chili chicken' => 'food 19.jpeg',
         'gobi manchurian' => 'food 19.jpeg',
 
-        'chatpate' => 'food 14.jpeg',
-        'taas' => 'food 14.jpeg',
-        'choila' => 'food 14.jpeg',
+        'lamb sekuwa' => 'food 14.jpeg',
         'sekuwa' => 'food 14.jpeg',
 
         'korma' => 'food 4.jpeg',
@@ -156,7 +163,6 @@ class StockImages
     private const STOCK_URLS = [
         'dining room' => 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80',
         'restaurant' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
-        'hero' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
         'tandoori' => 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=1600&q=80',
         'tandoor' => 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=1600&q=80',
         'kitchen' => 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=80',
@@ -175,7 +181,7 @@ class StockImages
         'butter masala momo' => 'food 20.jpeg',
         'chicken chili' => 'food 19.jpeg',
         'chicken pakora' => 'food 12.jpeg',
-        'samosa chaat' => 'food 2.jpeg',
+        'samosa chaat' => 'samosa.jpg',
         'korma' => 'food 4.jpeg',
         'nepali thali' => 'food 10.jpeg',
         'aloo gobi' => 'food 18.jpeg',
@@ -183,7 +189,7 @@ class StockImages
         'mango lassi' => 'food 16.jpeg',
         'vegetarian thali' => 'food 3.jpeg',
         'khaja set' => 'food 7.jpeg',
-        'chatpate & choila' => 'food 14.jpeg',
+        'lamb sekuwa' => 'food 14.jpeg',
         'kadai paneer' => 'food 6.jpeg',
         'garden salad' => 'food 11.jpeg',
     ];
@@ -204,7 +210,7 @@ class StockImages
 
     /** @var array<string, string> */
     private const MAP = [
-        'hero' => 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1600&q=80',
+        'hero' => '/images/hero-section.png',
     ];
 
     private const DEFAULT = 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800&q=80';

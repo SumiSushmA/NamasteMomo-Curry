@@ -2,7 +2,11 @@
   const header = document.getElementById('cust-header');
 
   if (header) {
-    header.classList.add('solid');
+    const syncHeader = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 28);
+    };
+    syncHeader();
+    window.addEventListener('scroll', syncHeader, { passive: true });
   }
 
   const burger = document.getElementById('cust-burger');
