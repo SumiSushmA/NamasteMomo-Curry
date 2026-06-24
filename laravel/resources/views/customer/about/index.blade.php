@@ -25,7 +25,7 @@
                 {{ \App\Support\SiteContent::text('About title line 1', 'Namaste MoMo') }}
                 <em>{{ \App\Support\SiteContent::text('About title line 2', '& curry house') }}</em>
             </h1>
-            <p class="abt-opening__lead">{{ \App\Support\SiteContent::text('About lead', '') }}</p>
+            <p class="abt-opening__lead">{{ \App\Support\SiteContent::text('About lead', \App\Data\PageSections::defaultValues()['About lead']) }}</p>
             <a href="#abt-story" class="abt-opening__scroll">{{ \App\Support\SiteContent::text('About scroll CTA', 'Read our story ↓') }}</a>
         </div>
         <div class="abt-opening__visual">
