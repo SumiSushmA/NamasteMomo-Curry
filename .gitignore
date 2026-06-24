@@ -1,3 +1,8 @@
 node_modules
+vendor
 .env
 .DS_Store
+.phpunit.result.cache
+laravel/node_modules
+laravel/vendor
+laravel/.env
