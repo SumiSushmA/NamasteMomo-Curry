@@ -117,20 +117,24 @@
                     </div>
                 </div>
                 <div class="gem-journey__copy gem-reveal gem-reveal--delay-1" data-reveal>
-                    <p class="gem-eyebrow">{{ SiteContent::text('Home journey eyebrow', 'What we serve') }}</p>
-                    <h2 class="gem-display">{!! $journeyTitleHtml !!}</h2>
-                    <p class="gem-body">{{ SiteContent::text('Hero headline', $content['Hero headline'] ?? '') }}</p>
-                    <div class="gem-journey__stats">
-                        <div class="gem-journey__stat">
-                            <strong>{{ $stat2['value'] }}</strong>
-                            <span>{{ $stat2['label'] }}</span>
-                        </div>
-                        <div class="gem-journey__stat">
-                            <strong>{{ $stat3['value'] }}</strong>
-                            <span>{{ $stat3['label'] }}</span>
-                        </div>
+                    <div class="gem-journey__intro">
+                        <p class="gem-eyebrow">{{ SiteContent::text('Home journey eyebrow', 'What we serve') }}</p>
+                        <h2 class="gem-display">{!! $journeyTitleHtml !!}</h2>
+                        <p class="gem-body">{{ SiteContent::text('Hero headline', $content['Hero headline'] ?? '') }}</p>
                     </div>
-                    <a href="{{ route('menu') }}" class="gem-cta gem-journey__cta">View our menu</a>
+                    <div class="gem-journey__actions">
+                        <div class="gem-journey__stats">
+                            <div class="gem-journey__stat">
+                                <strong>{{ $stat2['value'] }}</strong>
+                                <span>{{ $stat2['label'] }}</span>
+                            </div>
+                            <div class="gem-journey__stat">
+                                <strong>{{ $stat3['value'] }}</strong>
+                                <span>{{ $stat3['label'] }}</span>
+                            </div>
+                        </div>
+                        <a href="{{ route('menu') }}" class="gem-cta gem-journey__cta">View our menu</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -259,7 +263,8 @@
         </div>
     </div>
 
-    {{-- Reviews --}}
+    {{-- Reviews (only when real featured reviews exist) --}}
+    @if(!empty($reviews))
     <section class="gem-section">
         <div class="gem-container">
             <p class="gem-eyebrow gem-eyebrow--center">{{ SiteContent::text('Home reviews eyebrow', $content['Home reviews eyebrow'] ?? '') }}</p>
@@ -281,6 +286,7 @@
             </div>
         </div>
     </section>
+    @endif
 
 </div>
 

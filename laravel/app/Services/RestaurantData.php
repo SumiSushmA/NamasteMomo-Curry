@@ -96,6 +96,7 @@ class RestaurantData
     {
         return Promo::query()
             ->visible()
+            ->customerFacing()
             ->orderBy('sort_order')
             ->get()
             ->map(fn (Promo $p) => $p->toCustomerArray())
@@ -186,6 +187,7 @@ class RestaurantData
     {
         return Review::query()
             ->where('is_featured', true)
+            ->whereNotNull('customer_id')
             ->orderBy('sort_order')
             ->get()
             ->map(fn (Review $r) => [

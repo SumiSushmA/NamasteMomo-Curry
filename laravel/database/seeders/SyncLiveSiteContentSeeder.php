@@ -125,36 +125,12 @@ class SyncLiveSiteContentSeeder extends Seeder
 
     private function syncReviews(): void
     {
-        Review::query()->delete();
-
-        foreach (LiveSiteContent::reviews() as $index => $review) {
-            Review::create([
-                'author_name' => $review['name'],
-                'stars' => $review['stars'],
-                'body' => $review['text'],
-                'source_tag' => $review['tag'],
-                'is_featured' => true,
-                'sort_order' => $index,
-            ]);
-        }
+        // Reviews are created by customers or admins — never overwritten from seed data.
     }
 
     private function syncPromos(): void
     {
-        Promo::query()->delete();
-
-        foreach (LiveSiteContent::promos() as $index => $promo) {
-            Promo::create([
-                'slug' => $promo['id'],
-                'badge' => $promo['badge'],
-                'title' => $promo['title'],
-                'detail' => $promo['detail'],
-                'price_label' => $promo['price'],
-                'accent' => $promo['accent'],
-                'is_active' => true,
-                'sort_order' => $index,
-            ]);
-        }
+        // Offers are created in admin — never overwritten from seed data.
     }
 
     private function syncGallery(): void

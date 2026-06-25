@@ -54,20 +54,12 @@ class SeedData
 
     public static function promos(): array
     {
-        return [
-            ['id' => 'p1', 'badge' => 'Weekday Lunch', 'title' => 'Himalayan Lunch Thali', 'detail' => 'A full thali with dal, bhat, two tarkari & meat curry — every weekday, 11:30–3.', 'price' => '$14', 'accent' => 'gold'],
-            ['id' => 'p2', 'badge' => 'Family Feast', 'title' => '20% Off Orders Over $80', 'detail' => 'Gather the table. Save on family-size curries, biryani & a dozen momo.', 'price' => '−20%', 'accent' => 'spice'],
-            ['id' => 'p3', 'badge' => 'New', 'title' => 'Jhol Momo Tuesdays', 'detail' => 'Our signature soup dumplings, two-for-one, every Tuesday evening.', 'price' => '2-for-1', 'accent' => 'gold'],
-        ];
+        return [];
     }
 
     public static function reviews(): array
     {
-        return [
-            ['name' => 'Aarti S.', 'stars' => 5, 'text' => 'The jhol momo are unreal and the thali is the most authentic I\'ve had outside Kathmandu.', 'tag' => 'Google'],
-            ['name' => 'Marcus L.', 'stars' => 5, 'text' => 'Butter chicken with that smoky tikka — easily the best in the city. Warm, beautiful room.', 'tag' => 'Yelp'],
-            ['name' => 'Priya & Dev', 'stars' => 5, 'text' => 'Catered our 60-person event. Flawless, generous, and everyone asked who made the goat curry.', 'tag' => 'Google'],
-        ];
+        return [];
     }
 
     public static function galleryCategories(): array

@@ -22,6 +22,18 @@ class Promo extends Model
 
     public const CTA_RESERVE = 'reserve';
 
+    /** @var list<string> */
+    private const DEMO_SLUGS = [
+        'free-delivery-40',
+        'momo-combo',
+        'party-welcome-drink',
+        'p1',
+        'p2',
+        'p3',
+        'order-online',
+        'catering',
+    ];
+
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -76,6 +88,11 @@ class Promo extends Model
             ->where(function (Builder $q) use ($today) {
                 $q->whereNull('ends_at')->orWhereDate('ends_at', '>=', $today);
             });
+    }
+
+    public function scopeCustomerFacing(Builder $query): Builder
+    {
+        return $query->whereNotIn('slug', self::DEMO_SLUGS);
     }
 
     public static function offerTypes(): array
@@ -159,6 +176,7 @@ class Promo extends Model
     {
         $min = static::query()
             ->visible()
+            ->customerFacing()
             ->where('offer_type', self::TYPE_SPEND_SAVE)
             ->whereNotNull('min_order_amount')
             ->min('min_order_amount');
@@ -170,6 +188,7 @@ class Promo extends Model
     {
         return static::query()
             ->visible()
+            ->customerFacing()
             ->where('offer_type', self::TYPE_SPEND_SAVE)
             ->whereNotNull('min_order_amount')
             ->orderBy('min_order_amount')

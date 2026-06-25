@@ -224,10 +224,24 @@
   line-height: 1.2;
 }
 
-.acct-tab:hover,
+.acct-tab:hover {
+  background: rgba(122, 40, 54, 0.08);
+  color: var(--brand-600);
+}
+
 .acct-tab.active {
-  background: var(--ink-700);
-  color: var(--cream);
+  background: var(--brand-600);
+  color: #fff;
+}
+
+.acct-tab.active:hover {
+  background: #6a2230;
+  color: #fff;
+}
+
+.acct-tab.active svg {
+  color: #fff;
+  stroke: #fff;
 }
 
 .acct-logout {
@@ -611,14 +625,20 @@
   }
 
   .acct-tab:hover {
-    background: #fff;
-    border-color: var(--brand-700);
+    background: rgba(122, 40, 54, 0.08);
+    border-color: rgba(122, 40, 54, 0.25);
     color: var(--brand-600);
   }
 
   .acct-tab.active {
     background: var(--brand-600);
     border-color: var(--brand-600);
+    color: #fff;
+  }
+
+  .acct-tab.active:hover {
+    background: #6a2230;
+    border-color: #6a2230;
     color: #fff;
   }
 

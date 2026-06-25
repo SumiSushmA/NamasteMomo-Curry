@@ -91,59 +91,12 @@ class LiveSiteContent
 
     public static function reviews(): array
     {
-        return [
-            ['name' => 'Priya M.', 'stars' => 5, 'text' => 'We stop in after work when we do not feel like cooking. Butter curry with garlic naan is always good, and the chicken biryani portions are generous.', 'tag' => 'Google'],
-            ['name' => 'James T.', 'stars' => 4, 'text' => 'Solid lunch spot on Evergreen Way. Chicken pakora was crispy, matar paneer had nice spice, and the staff was friendly even when it was busy.', 'tag' => 'Yelp'],
-            ['name' => 'Linda K.', 'stars' => 5, 'text' => 'Brought my parents here for the first time and they loved it. Dal makhani with plain naan was the highlight. Already planning our next visit.', 'tag' => 'Google'],
-            ['name' => 'Chris W.', 'stars' => 5, 'text' => 'Ordered pickup twice last week. Food was still hot when we got home, and the steamed momo were fresh. Easy ordering through Toast.', 'tag' => 'Pickup'],
-            ['name' => 'Angela P.', 'stars' => 4, 'text' => 'Cozy dining room and fair prices. Tikka masala and garlic basil naan were excellent. Good option for a relaxed family dinner.', 'tag' => 'Regular guest'],
-            ['name' => 'Kevin N.', 'stars' => 5, 'text' => 'Catered lunch for our office — chicken biryani and tray sides fed everyone with plenty left over. Team was easy to work with.', 'tag' => 'Catering'],
-        ];
+        return [];
     }
 
     public static function promos(): array
     {
-        return [
-            [
-                'id' => 'free-delivery-40',
-                'badge' => 'Spend & save',
-                'title' => 'Free delivery on orders $40+',
-                'detail' => 'Order $40 or more for delivery and the delivery fee is on us — perfect for family dinners.',
-                'price' => '$40 min',
-                'accent' => 'gold',
-                'offer_type' => 'spend_save',
-                'cta_type' => 'menu',
-                'cta_label' => 'Start your order',
-                'terms' => 'Applies to delivery orders only. Before tax and tip.',
-                'min_order_amount' => 40,
-            ],
-            [
-                'id' => 'momo-combo',
-                'badge' => 'Combo deal',
-                'title' => 'Combo Momo Feast',
-                'detail' => 'Steamed, fried, sandheko, and chili momo in one order — four styles, one great price.',
-                'price' => '$14.99',
-                'accent' => 'spice',
-                'offer_type' => 'combo_meal',
-                'cta_type' => 'order_item',
-                'cta_label' => 'Order this combo',
-                'menu_item_slug' => 'combo-momo',
-                'terms' => 'Valid for pickup and delivery. Cannot be combined with other offers.',
-            ],
-            [
-                'id' => 'party-welcome-drink',
-                'badge' => 'Dine-in perk',
-                'title' => 'Party of 6 — welcome drink on us',
-                'detail' => 'Reserve a table for six or more and each guest receives a complimentary welcome drink.',
-                'price' => '6+ guests',
-                'accent' => 'leaf',
-                'offer_type' => 'reservation_perk',
-                'cta_type' => 'reserve',
-                'cta_label' => 'Reserve for 6+',
-                'terms' => 'Dine-in only. Mention this offer when seated. Non-alcoholic welcome drink per guest.',
-                'min_party_size' => 6,
-            ],
-        ];
+        return [];
     }
 
     public static function galleryCategories(): array

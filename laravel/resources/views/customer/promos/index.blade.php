@@ -19,8 +19,13 @@
         <div class="offers-hero__inner">
             <div class="offers-hero__copy">
                 <span class="offers-hero__eyebrow">{{ \App\Support\SiteContent::text('Promos eyebrow', 'Offers & specials') }}</span>
-                <h1>{{ \App\Support\SiteContent::text('Promos title', 'Deals going on now') }}</h1>
-                <p>{{ \App\Support\SiteContent::text('Promos subtitle', '') }}</p>
+                @if(empty($promos))
+                    <h1>Offers &amp; specials</h1>
+                    <p>Limited-time deals, combo specials, and dine-in perks will appear here when they are live.</p>
+                @else
+                    <h1>{{ \App\Support\SiteContent::text('Promos title', 'Deals going on now') }}</h1>
+                    <p>{{ \App\Support\SiteContent::text('Promos subtitle', '') }}</p>
+                @endif
             </div>
             @if(count($promos))
                 <div class="offers-hero__badge" aria-hidden="true">
@@ -39,8 +44,8 @@
         @if(empty($promos))
             <div class="offers-empty">
                 <x-icon name="tag" :size="40" color="var(--offers-muted)" />
-                <h2>No active offers right now</h2>
-                <p>Check back soon — or browse the full menu anytime.</p>
+                <h2>No offers right now</h2>
+                <p>When we run a promotion, you will see it here. In the meantime, browse the full menu or sign up below to hear about future deals.</p>
                 <a href="{{ route('menu') }}" class="offers-btn offers-btn--primary">Browse menu</a>
             </div>
         @else

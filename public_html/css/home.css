@@ -333,12 +333,6 @@
   display: inline-flex;
   color: var(--gem-maroon);
   font-size: 14px;
-  animation: gem-scroll-hint 1.8s ease-in-out infinite;
-}
-
-@keyframes gem-scroll-hint {
-  0%, 100% { transform: translateX(0); opacity: 0.65; }
-  50% { transform: translateX(5px); opacity: 1; }
 }
 
 .gem-sig-card {
@@ -556,6 +550,11 @@
   align-items: start;
 }
 
+.gem-journey__copy {
+  display: flex;
+  flex-direction: column;
+}
+
 .gem-journey__copy .gem-eyebrow {
   margin-bottom: 18px;
 }
@@ -580,6 +579,10 @@
   margin-top: 32px;
   padding-top: 28px;
   border-top: 1px solid var(--gem-line);
+}
+
+.gem-journey__actions .gem-journey__stats {
+  margin-top: 0;
 }
 
 .gem-journey__stat strong {
@@ -1194,7 +1197,38 @@
     min-height: 200px;
   }
 
-  .gem-journey,
+  .gem-journey {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .gem-journey__copy {
+    display: contents;
+  }
+
+  .gem-journey__intro {
+    order: 1;
+  }
+
+  .gem-journey__visual {
+    order: 2;
+  }
+
+  .gem-journey__actions {
+    order: 3;
+  }
+
+  .gem-journey__actions .gem-journey__stats {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .gem-journey__actions .gem-journey__cta {
+    margin-top: 28px;
+  }
+
   .gem-collage,
   .gem-cards,
   .gem-foot__grid {
@@ -1226,20 +1260,11 @@
     scroll-snap-align: start;
   }
 
-  .gem-journey__copy {
-    display: block;
-    max-width: 100%;
-  }
-
-  .gem-journey__copy .gem-display {
+  .gem-journey__intro .gem-display {
     max-width: none;
   }
 
-  .gem-journey__copy .gem-cta {
-    margin-top: 32px;
-  }
-
-  .gem-journey__copy .gem-body {
+  .gem-journey__intro .gem-body {
     max-width: none;
   }
 
